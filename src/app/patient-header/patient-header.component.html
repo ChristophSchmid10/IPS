@@ -1,0 +1,66 @@
+<mat-expansion-panel>
+  <mat-expansion-panel-header>
+    <div class="header-frame">
+      <div class="patient-header">
+        <div class="content-frame">
+          <div class="avatar-and-name">
+            <div class="avatar">
+              <p class="initials">{{patient?.initials}}</p>
+            </div>
+            <div class="name-and-data">
+              <p class="name">{{patient?.firstName}} {{patient?.middleName}} {{patient?.lastName}}</p>
+              <div class="gender-and-birthday">
+                <div class="gender">
+                  <img src="assets/Icons/Gender.svg">
+                  <p>{{patient?.gender}}</p>
+                </div>
+                <div *ngIf="patient?.dateOfBirth" class="birthday">
+                  <img src="assets/Icons/Birthday.svg">
+                  <p>{{patient?.dateOfBirth | date:'dd.MM.yyyy'}} ({{calculateAge(patient?.dateOfBirth)}} Jahre)</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <app-allergy-warning></app-allergy-warning>
+          <app-global-search-field></app-global-search-field>
+        </div>
+      </div>
+    </div>
+  </mat-expansion-panel-header>
+  <div class="line"></div>
+  <div class="details-frame">
+    <div class="detail-information">
+      <p class="key">Adresse</p>
+      <p class="value">{{patient?.address}}</p>
+    </div>
+    <div class="detail-information">
+      <p class="key">Telefonnummer</p>
+      <p class="value">{{patient?.phoneNumber}}</p>
+    </div>
+    <div class="detail-information">
+      <p class="key">Mail</p>
+      <p class="value">{{patient?.email}}</p>
+    </div>
+  </div>
+  <div class="details-frame">
+    <div class="detail-information">
+      <p class="key">SVNR</p>
+      <p class="value">{{patient?.SVNR}}</p>
+    </div>
+    <div class="detail-information">
+      <p class="key">Hausarzt</p>
+      <p class="value">{{patient?.homePhysician}}</p>
+    </div>
+  </div>
+  <div class="details-frame">
+    <div class="detail-information">
+      <p class="key">Zuletzt aktualisiert am</p>
+      <p class="value">{{patient?.lastUpdatedOn | date: 'dd.MM.yyyy'}}</p>
+    </div>
+    <div class="detail-information">
+      <p class="key">Zuletzt aktualisiert von</p>
+      <p class="value">{{patient?.lastUpdateFrom}}</p>
+    </div>
+  </div>
+</mat-expansion-panel>
+

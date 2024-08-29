@@ -1,0 +1,9 @@
+.collapsed-tables {
+  display: flex;
+  width: 100%;
+
+  app-table {
+    flex: 1;
+    padding: 10px;
+  }
+}

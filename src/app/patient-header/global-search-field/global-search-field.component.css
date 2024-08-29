@@ -1,0 +1,13 @@
+
+.search-field {
+  border-radius: 25px;
+  overflow: hidden;
+}
+
+.mat-form-field-outline {
+  border-radius: 25px;
+}
+
+.mat-form-field-outline-start, .mat-form-field-outline-end {
+  border-radius: 25px;
+}
