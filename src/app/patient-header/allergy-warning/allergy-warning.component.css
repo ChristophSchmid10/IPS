@@ -2,33 +2,30 @@
   display: flex;
   align-items: center;
   border-radius: 10px;
-  background: #E95D5C;
+  background: #e95d5c;
   justify-content: center;
   padding: 0px 16px;
-  gap: 16px
+  gap: 16px;
 }
 .allergy-text-frame {
-display: flex;
+  display: flex;
 
-align-items: center;
-gap: 16px;
-align-self: stretch;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
 
-p,b {
+  p,
+  b {
+    color: #fff;
+    text-align: center;
+    font-family: Mulish, serif;
+    font-size: 25px;
+    font-style: normal;
 
-color: #FFF;
-text-align: center;
-  font-family: Mulish, serif;
-font-size: 25px;
-font-style: normal;
-
-line-height: normal;
-
-}
+    line-height: normal;
+  }
 }
 
 b {
   font-weight: 800;
-
 }
-

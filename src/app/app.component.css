@@ -3,7 +3,7 @@
   align-items: flex-start;
   flex-direction: column;
   padding: 1rem;
-  background: #E0EDFF;
+  background: #e0edff;
   justify-content: flex-start;
 }
 
@@ -19,7 +19,7 @@ mat-tab-group {
 }
 
 mat-tab {
-background: white;
+  background: white;
 }
 
 .tabs {
@@ -28,11 +28,3 @@ background: white;
   margin-top: 1rem;
   background: white;
 }
-
-
-
-
-
-
-
-

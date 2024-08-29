@@ -1,6 +1,4 @@
-
 /* src/app/components/table/table.component.css */
-
 
 .filter-input {
   margin-bottom: 20px;
@@ -31,7 +29,7 @@ table {
   padding: 16px;
   justify-content: space-between;
   align-items: center;
-  background: #FFF;
+  background: #fff;
 
   .icon-and-label {
     display: flex;
@@ -47,7 +45,7 @@ table {
     }
 
     p {
-      color: #7F7F7F;
+      color: #7f7f7f;
       margin: 0;
 
       text-align: center;
@@ -72,21 +70,17 @@ table {
 thead {
   align-items: center;
   border-radius: 4px;
-  background: #37D;
+  background: #37d;
   color: white;
 
   th {
-
     padding-left: 12px;
     text-align: start;
   }
 }
-
 
 tbody {
   td {
     padding-left: 12px;
   }
 }
-
-

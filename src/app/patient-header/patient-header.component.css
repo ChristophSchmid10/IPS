@@ -1,4 +1,3 @@
-
 /* Global Styles */
 p {
   margin: 0;
@@ -39,7 +38,7 @@ mat-expansion-panel-header {
   align-items: center;
   align-self: stretch;
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   width: auto;
 }
 
@@ -116,7 +115,7 @@ mat-expansion-panel-header {
 }
 
 .gender p {
-  color: #7F7F7F;
+  color: #7f7f7f;
   text-align: center;
   font-family: Mulish, sans-serif;
   font-size: 20px;
@@ -132,7 +131,7 @@ mat-expansion-panel-header {
 }
 
 .birthday p {
-  color: #7F7F7F;
+  color: #7f7f7f;
   text-align: center;
   font-family: Mulish, sans-serif;
   font-size: 20px;
@@ -145,7 +144,7 @@ mat-expansion-panel-header {
 .line {
   width: 100%;
   height: 1px;
-  background: #B3B3B3;
+  background: #b3b3b3;
 }
 
 /* Details Frame */
@@ -167,7 +166,7 @@ mat-expansion-panel-header {
 }
 
 .detail-information .key {
-  color: #6F6F6F;
+  color: #6f6f6f;
   text-align: center;
   font-family: Mulish, sans-serif;
   font-size: 20px;
@@ -177,7 +176,7 @@ mat-expansion-panel-header {
 }
 
 .detail-information .value {
-  color: #191C20;
+  color: #191c20;
   text-align: center;
   font-family: Mulish, sans-serif;
   font-size: 25px;

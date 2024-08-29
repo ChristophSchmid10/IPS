@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
-import {Observable, of} from 'rxjs';
-import {Status} from "../enums/status.enum";
-import {Procedure} from "../models/procedure.model";
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { Status } from '../enums/status.enum';
+import { Procedure } from '../models/procedure.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,8 +23,6 @@ export class ProcedureService {
       name: 'History of colonoscopy',
       status: Status.Completed,
     },
-
-
   ];
 
   constructor() {}

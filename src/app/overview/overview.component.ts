@@ -1,18 +1,16 @@
-import {Component, OnInit} from '@angular/core';
-import {Data} from "../enums/data.enum";
-import {TableComponent} from "./table/table.component";
+import { Component, OnInit } from '@angular/core';
+import { Data } from '../enums/data.enum';
+import { TableComponent } from './table/table.component';
 
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [
-    TableComponent
-  ],
+  imports: [TableComponent],
   templateUrl: './overview.component.html',
-  styleUrl: './overview.component.css'
+  styleUrl: './overview.component.css',
 })
-export class OverviewComponent implements OnInit{
-  tableOrder: {[key:number]: Data} = {};
+export class OverviewComponent implements OnInit {
+  tableOrder: { [key: number]: Data } = {};
 
   protected readonly Data = Data;
 

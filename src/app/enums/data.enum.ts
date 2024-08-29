@@ -3,5 +3,5 @@ export enum Data {
   Diagnosis = 'Diagnosen',
   LabValue = 'Laborwerte',
   Procedure = 'Eingriffe',
-  VitalSign = 'Vitalparameter'
+  VitalSign = 'Vitalparameter',
 }

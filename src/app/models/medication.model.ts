@@ -1,10 +1,10 @@
-import {Status} from "../enums/status.enum";
+import { Status } from '../enums/status.enum';
 
 export interface Medication {
   id: number;
   name: string;
-  status?:Status;
+  status?: Status;
   startDate?: Date;
-  endDate?: Date
+  endDate?: Date;
   dosage?: string;
 }

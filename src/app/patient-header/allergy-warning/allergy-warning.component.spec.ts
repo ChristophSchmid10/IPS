@@ -8,10 +8,9 @@ describe('AllergyWarningComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AllergyWarningComponent]
-    })
-    .compileComponents();
-    
+      imports: [AllergyWarningComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(AllergyWarningComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

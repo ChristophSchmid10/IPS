@@ -1,7 +1,7 @@
-import {Status} from "../enums/status.enum";
+import { Status } from '../enums/status.enum';
 
 export interface Allergy {
   id: number;
   name: string;
-  status?:Status;
+  status?: Status;
 }
