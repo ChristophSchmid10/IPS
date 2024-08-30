@@ -1,7 +1,8 @@
-<div *ngIf="!collapsed; else collapsedView">
+
+<div class="table-frame" *ngIf="!collapsed; else collapsedView">
   <div class="table-view-header">
     <div class="icon-and-label">
-      <img [src]=getImage()>
+      <img [src]="getImage()">
       <p>{{dataType.toString()}}</p>
     </div>
     <input type="text" (input)="applyFilter($event)" placeholder="Filter" class="filter-input">
@@ -9,7 +10,7 @@
   <div class="table-container">
     <div class="table-wrapper">
       <table>
-        <thead>
+        <thead class="sticky-header">
         <tr>
           <th *ngFor="let headerLabel of headerLabels">{{headerLabel}}</th>
         </tr>
@@ -34,29 +35,31 @@
 </div>
 
 <ng-template #collapsedView>
-  <div class="collapsed-container">
-  <div class="table-view-header">
-    <div class="icon-and-label">
-      <img [src]=getImage()>
-      <p>{{dataType.toString()}}</p>
+  <div class="table-frame collapsed-container">
+    <div class="table-view-header">
+      <div class="icon-and-label">
+        <img [src]="getImage()">
+        <p>{{dataType.toString()}}</p>
+      </div>
+      <button mat-icon-button (click)="changeTableOrder()">
+        <img src="assets/Icons/Maximize.svg">
+      </button>
     </div>
-    <img src="assets/Icons/Maximize.svg" (click)="changeTableOrder()">
-  </div>
-  <div class="table-container">
-    <div class="table-wrapper">
-      <table>
-        <thead>
-        <tr>
-          <th>{{headerLabels[0]}}</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let dataSet of filteredData">
-          <td>{{dataSet?.name}}</td>
-        </tr>
-        </tbody>
-      </table>
+    <div class="table-container">
+      <div class="table-wrapper">
+        <table>
+          <thead class="sticky-header">
+          <tr>
+            <th>{{headerLabels[0]}}</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let dataSet of filteredData">
+            <td>{{dataSet?.name}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
-  </div>
   </div>
 </ng-template>

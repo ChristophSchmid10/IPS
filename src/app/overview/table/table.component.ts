@@ -16,12 +16,13 @@ import { DiagnosisService } from '../../services/diagnosis.service';
 import { Diagnosis } from '../../models/diagnosis.model';
 import { LabValueService } from '../../services/lab-value.service';
 import { ProcedureService } from '../../services/procedure.service';
+import {MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   standalone: true,
-  imports: [DatePipe, NgForOf, NgIf],
+  imports: [DatePipe, NgForOf, NgIf, MatIconButton],
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit, OnChanges {

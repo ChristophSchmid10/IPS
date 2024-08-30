@@ -1,9 +1,20 @@
+
+.container {
+  padding: 1rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
 .collapsed-tables {
   display: flex;
   width: 100%;
+  gap: 1rem;
+}
 
-  app-table {
-    flex: 1;
-    padding: 10px;
-  }
+.collapsed-tables > app-table {
+  flex: 1;
+
 }

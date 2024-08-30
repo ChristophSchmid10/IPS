@@ -1,86 +1,94 @@
-/* src/app/components/table/table.component.css */
 
-.filter-input {
-  margin-bottom: 20px;
-  width: 100%;
+.table-frame {
+  border-radius: 15px;
+  border: 1px solid #B3B3B3; /* Complete border property */
+  background: #FFF;
+  overflow: hidden; /* Ensure border radius is visible */
+  padding: 16px;
 }
 
-.mat-elevation-z8 {
-  padding: 20px;
-  background: white;
+.table-view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  padding: 0 1rem 1rem 1rem;
 }
 
-.mat-table-wrapper {
-  max-height: 600px;
+.table-view-header .icon-and-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.table-view-header .icon-and-label img {
+  width: 50px;
+  height: 50px;
+}
+
+.table-view-header .icon-and-label p {
+  color: #7f7f7f;
+  margin: 0;
+  text-align: center;
+  font-family: Mulish;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.table-view-header .filter-input {
+  width: 337px;
+  padding: 8px;
+}
+
+.table-container {
+  overflow-y: auto;
+  max-height: 300px;
+  height: 300px;
+}
+
+.table-wrapper {
   overflow-y: auto;
 }
 
 table {
   width: 100%;
+  border-collapse: separate; /* Ensure borders don't collapse */
+  border-spacing: 0; /* Remove any additional spacing */
 }
 
-.table-container {
-  height: 300px;
-  overflow-y: auto;
+thead.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: #37d; /* Set the background color to prevent overlapping content */
+  z-index: 1; /* Ensure the header stays on top */
+  color: white; /* Text color */
 }
 
-.table-view-header {
-  display: flex;
-  padding: 16px;
-  justify-content: space-between;
-  align-items: center;
-  background: #fff;
-
-  .icon-and-label {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-
-    img {
-      display: flex;
-      width: 50px;
-      height: 50px;
-      justify-content: center;
-      align-items: center;
-    }
-
-    p {
-      color: #7f7f7f;
-      margin: 0;
-
-      text-align: center;
-      font-family: Mulish;
-      font-size: 30px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-    }
-  }
-  input {
-    display: flex;
-    width: 337px;
-    padding: 8px;
-    align-items: center;
-    gap: 4px;
-    flex-shrink: 0;
-    margin: 0;
-  }
+thead.sticky-header th {
+  padding-left: 12px;
+  text-align: start;
+  height: 30px;
 }
 
-thead {
-  align-items: center;
-  border-radius: 4px;
-  background: #37d;
-  color: white;
-
-  th {
-    padding-left: 12px;
-    text-align: start;
-  }
+thead.sticky-header th:first-child {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
 
-tbody {
-  td {
-    padding-left: 12px;
-  }
+thead.sticky-header th:last-child {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+tbody td {
+  padding-left: 12px;
+  border-bottom: 1px solid #ddd; /* Add bottom border to each cell */
+}
+
+tbody tr {
+  height: 30px;
+}
+
+tbody tr:last-child td {
+  border-bottom: none; /* Remove bottom border for the last row */
 }

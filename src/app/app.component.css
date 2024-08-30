@@ -28,3 +28,29 @@ mat-tab {
   margin-top: 1rem;
   background: white;
 }
+
+.custom-tab-group .mat-mdc-tab-labels {
+  background-color: #e0edff;
+}
+
+.custom-tab-group .mat-mdc-tab-label {
+  color: white;
+}
+
+.mdc-tab__text-label {
+  color: #37d !important;
+}
+.custom-tab-group .mdc-tab--active {
+  background-color: white;
+  border-radius: 4px;
+
+  .mdc-tab__text-label {
+    color: black !important; /* You can set the text color of the active tab as needed */
+
+  }
+}
+
+/* Optional: Customize the ink bar (underline) color */
+.custom-tab-group .mat-mdc-ink-bar {
+  background-color: white;
+}
