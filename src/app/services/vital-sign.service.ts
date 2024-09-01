@@ -21,7 +21,7 @@ export class VitalSignService {
       value: 68,
       unit: 'kg',
       measuredAt: new Date('2024-02-08'),
-      delta: null
+      delta: null,
     },
     {
       id: 3,
@@ -29,7 +29,7 @@ export class VitalSignService {
       value: 22.72,
       unit: 'kg/m^2',
       measuredAt: new Date('2024-02-08'),
-      delta: null
+      delta: null,
     },
     {
       id: 4,
@@ -37,7 +37,7 @@ export class VitalSignService {
       value: null,
       unit: null,
       measuredAt: null,
-      delta: null
+      delta: null,
     },
     {
       id: 5,
@@ -45,7 +45,7 @@ export class VitalSignService {
       value: null,
       unit: null,
       measuredAt: null,
-      delta: null
+      delta: null,
     },
     {
       id: 6,
@@ -53,7 +53,7 @@ export class VitalSignService {
       value: '<102',
       unit: 'cm',
       measuredAt: new Date('2024-02-08'),
-      delta: null
+      delta: null,
     },
     {
       id: 7,
@@ -61,7 +61,7 @@ export class VitalSignService {
       value: 85,
       unit: '/min',
       measuredAt: new Date('2024-02-08'),
-      delta: null
+      delta: null,
     },
     {
       id: 8,
@@ -69,7 +69,7 @@ export class VitalSignService {
       value: '130/80',
       unit: 'mm[Hq]',
       measuredAt: new Date('2024-02-08'),
-      delta: null
+      delta: null,
     },
     {
       id: 9,
@@ -77,7 +77,7 @@ export class VitalSignService {
       value: null,
       unit: null,
       measuredAt: null,
-      delta: null
+      delta: null,
     },
     {
       id: 10,
@@ -85,7 +85,7 @@ export class VitalSignService {
       value: 'Nichtraucher',
       measuredAt: new Date('2024-02-08'),
       unit: null,
-      delta: null
+      delta: null,
     },
     {
       id: 11,
@@ -93,7 +93,7 @@ export class VitalSignService {
       value: '>2.5',
       unit: 'h/1 wk',
       measuredAt: new Date('2024-02-08'),
-      delta: null
+      delta: null,
     },
   ];
 

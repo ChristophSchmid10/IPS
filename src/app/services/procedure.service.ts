@@ -12,19 +12,19 @@ export class ProcedureService {
       id: 1,
       name: 'Total replacement of left hip joint',
       status: Status.Completed,
-      doneAt: new Date (2010)
+      doneAt: new Date(2010),
     },
     {
       id: 2,
       name: 'Appendectomy',
       status: Status.Completed,
-      doneAt: new Date (1962)
+      doneAt: new Date(1962),
     },
     {
       id: 3,
       name: 'History of colonoscopy',
       status: Status.Completed,
-      doneAt: new Date(2014)
+      doneAt: new Date(2014),
     },
   ];
 

@@ -1,4 +1,3 @@
-
 .section {
   display: flex;
   padding: 16px;
@@ -7,7 +6,8 @@
   align-self: stretch;
 }
 
-.body-measures, .vital-signs-history {
+.body-measures,
+.vital-signs-history {
   flex: 1;
 }
 
@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  background: #FFF;
+  background: #fff;
 }
 
 .body-measures p {
@@ -89,7 +89,7 @@
   align-items: flex-start;
   gap: 16px;
   border-radius: 10px;
-  background: #FFF;
+  background: #fff;
   width: 100%;
 }
 

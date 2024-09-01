@@ -1,4 +1,3 @@
-
 p {
   margin: 0;
 }
@@ -12,12 +11,11 @@ p {
   align-items: flex-start;
   gap: 16px;
   border-radius: 10px;
-  border: 1px solid #B3B3B3;
-  background: #FFF;
+  border: 1px solid #b3b3b3;
+  background: #fff;
   cursor: pointer;
   transition: background-color 0.3s;
 }
-
 
 .vital-sign-card:hover {
   background-color: #f0f0f0;
@@ -62,7 +60,7 @@ p {
 }
 
 .vital-sign {
-  color: #191C20;
+  color: #191c20;
   text-align: center;
   font-family: Mulish;
   font-size: 25px;
@@ -70,7 +68,7 @@ p {
 }
 
 .date {
-  color: #6F6F6F;
+  color: #6f6f6f;
   text-align: center;
   font-family: Mulish;
   font-size: 20px;
@@ -100,7 +98,7 @@ p {
 }
 
 .unit {
-  color: #6F6F6F;
+  color: #6f6f6f;
   text-align: center;
   font-family: Mulish;
   font-size: 25px;
@@ -120,7 +118,7 @@ p {
 }
 
 .delta {
-  color: #FFA900;
+  color: #ffa900;
   font-family: Mulish;
   font-size: 23px;
   font-weight: 600;
@@ -146,7 +144,14 @@ p {
   height: 18px;
   align-self: stretch;
   border-radius: 9px;
-  background: linear-gradient(90deg, #B1D5EF 0%, #93DDE2 25.1%, #99DFC4 49.82%, #CEC576 76.62%, #E17E8C 100%);
+  background: linear-gradient(
+    90deg,
+    #b1d5ef 0%,
+    #93dde2 25.1%,
+    #99dfc4 49.82%,
+    #cec576 76.62%,
+    #e17e8c 100%
+  );
 }
 
 .values {
@@ -157,7 +162,7 @@ p {
 }
 
 .values p {
-  color: #C1C6CC;
+  color: #c1c6cc;
   text-align: center;
   font-family: Mulish;
   font-size: 15px;

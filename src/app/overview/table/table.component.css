@@ -1,8 +1,7 @@
-
 .table-frame {
   border-radius: 15px;
-  border: 1px solid #B3B3B3; /* Complete border property */
-  background: #FFF;
+  border: 1px solid #b3b3b3; /* Complete border property */
+  background: #fff;
   overflow: hidden; /* Ensure border radius is visible */
   padding: 16px;
 }
@@ -57,7 +56,6 @@
 .table-wrapper table tbody tr:hover {
   background-color: #f0f0f0;
 }
-
 
 table {
   width: 100%;

@@ -29,8 +29,6 @@ mat-tab {
   background: white;
 }
 
-.mat-mdc-dialog-surface
-{
+.mat-mdc-dialog-surface {
   border-radius: 10px;
 }
-

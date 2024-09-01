@@ -8,10 +8,9 @@ describe('ValueDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ValueDialogComponent]
-    })
-    .compileComponents();
-    
+      imports: [ValueDialogComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(ValueDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

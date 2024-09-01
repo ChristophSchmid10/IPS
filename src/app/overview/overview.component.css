@@ -1,12 +1,9 @@
-
 .container {
   padding: 1rem;
   gap: 1rem;
   display: flex;
   flex-direction: column;
 }
-
-
 
 .collapsed-tables {
   display: flex;
@@ -16,5 +13,4 @@
 
 .collapsed-tables > app-table {
   flex: 1;
-
 }

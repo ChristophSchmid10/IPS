@@ -8,10 +8,9 @@ describe('VitalSignsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VitalSignsComponent]
-    })
-    .compileComponents();
-    
+      imports: [VitalSignsComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(VitalSignsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
