@@ -12,7 +12,7 @@ export class VitalSignService {
       name: 'Körpergröße',
       value: 173,
       unit: 'cm',
-      delta: '2',
+      delta: 2,
       measuredAt: new Date('2024-02-08'),
     },
     {
@@ -21,6 +21,7 @@ export class VitalSignService {
       value: 68,
       unit: 'kg',
       measuredAt: new Date('2024-02-08'),
+      delta: null
     },
     {
       id: 3,
@@ -28,14 +29,23 @@ export class VitalSignService {
       value: 22.72,
       unit: 'kg/m^2',
       measuredAt: new Date('2024-02-08'),
+      delta: null
     },
     {
       id: 4,
       name: 'Kopfumfang',
+      value: null,
+      unit: null,
+      measuredAt: null,
+      delta: null
     },
     {
       id: 5,
       name: 'Brustumfang',
+      value: null,
+      unit: null,
+      measuredAt: null,
+      delta: null
     },
     {
       id: 6,
@@ -43,6 +53,7 @@ export class VitalSignService {
       value: '<102',
       unit: 'cm',
       measuredAt: new Date('2024-02-08'),
+      delta: null
     },
     {
       id: 7,
@@ -50,6 +61,7 @@ export class VitalSignService {
       value: 85,
       unit: '/min',
       measuredAt: new Date('2024-02-08'),
+      delta: null
     },
     {
       id: 8,
@@ -57,16 +69,23 @@ export class VitalSignService {
       value: '130/80',
       unit: 'mm[Hq]',
       measuredAt: new Date('2024-02-08'),
+      delta: null
     },
     {
       id: 9,
       name: 'Blutzucker',
+      value: null,
+      unit: null,
+      measuredAt: null,
+      delta: null
     },
     {
       id: 10,
       name: 'Raucherstatus',
       value: 'Nichtraucher',
       measuredAt: new Date('2024-02-08'),
+      unit: null,
+      delta: null
     },
     {
       id: 11,
@@ -74,6 +93,7 @@ export class VitalSignService {
       value: '>2.5',
       unit: 'h/1 wk',
       measuredAt: new Date('2024-02-08'),
+      delta: null
     },
   ];
 

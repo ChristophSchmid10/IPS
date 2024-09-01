@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let dataSet of filteredData">
+        <tr *ngFor="let dataSet of filteredData" (click)="onRowClick(dataSet, dataType)">
           <td>{{dataSet?.name}}</td>
           <td *ngIf="dataType == Data.Medication || dataType == Data.Procedure || dataType == Data.Diagnosis">{{dataSet?.status}}</td>
           <td *ngIf="dataType == Data.Medication">{{dataSet?.dosage}}</td>
@@ -54,7 +54,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let dataSet of filteredData">
+          <tr *ngFor="let dataSet of filteredData" (click)="onRowClick(dataSet, dataType)">
             <td>{{dataSet?.name}}</td>
           </tr>
           </tbody>

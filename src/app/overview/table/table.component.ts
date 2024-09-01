@@ -17,6 +17,8 @@ import { Diagnosis } from '../../models/diagnosis.model';
 import { LabValueService } from '../../services/lab-value.service';
 import { ProcedureService } from '../../services/procedure.service';
 import {MatIconButton} from "@angular/material/button";
+import {MatDialog} from "@angular/material/dialog";
+import {ValueDialogComponent} from "../../shared/value-dialog/value-dialog.component";
 
 @Component({
   selector: 'app-table',
@@ -38,6 +40,7 @@ export class TableComponent implements OnInit, OnChanges {
     private diagnosisService: DiagnosisService,
     private labValueService: LabValueService,
     private procedureServices: ProcedureService,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -108,5 +111,15 @@ export class TableComponent implements OnInit, OnChanges {
 
   changeTableOrder() {
     this.changeTableOrderEvent.emit();
+  }
+
+  onRowClick(dataSet: any, dataType: Data): void {
+    const dialogRef = this.dialog.open(ValueDialogComponent, {
+      data: [dataType, dataSet]
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 }

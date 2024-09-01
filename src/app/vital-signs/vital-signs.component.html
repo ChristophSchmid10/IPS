@@ -1,0 +1,42 @@
+
+<div class="section">
+  <div class="body-measures">
+    <p>Körpermaße:</p>
+    <div class="body-measurements">
+      <div class="height-weight">
+        <app-vital-sign-card [vertical]="false" [vitalSign]="getVitalSign('Körpergröße')"></app-vital-sign-card>
+        <app-vital-sign-card [vertical]="false" [vitalSign]="getVitalSign('Körpergewicht')"></app-vital-sign-card>
+      </div>
+      <div class="bmi-container">
+        <app-vital-sign-card [vertical]="true" [vitalSign]="getVitalSign('Body-Mass-Index')"></app-vital-sign-card>
+      </div>
+    </div>
+    <div class="body-circumferences body-measurements">
+      <div class="body-sketch-container">
+        <img src="assets/Icons/Vital-Signs/Body_Sketch.svg" class="body-sketch">
+      </div>
+      <div class="circumferences">
+        <app-vital-sign-card [vertical]="false" [vitalSign]="getVitalSign('Kopfumfang')"></app-vital-sign-card>
+        <app-vital-sign-card [vertical]="false" [vitalSign]="getVitalSign('Brustumfang')"></app-vital-sign-card>
+        <app-vital-sign-card [vertical]="false" [vitalSign]="getVitalSign('Hüftumfang')"></app-vital-sign-card>
+      </div>
+    </div>
+  </div>
+  <div class="vital-signs-history">
+    <div class="vital-signs">
+      <p>Vitalwerte:</p>
+      <div class="vital-signs-frame">
+        <app-vital-sign-card [vertical]="true" [vitalSign]="getVitalSign('Herzfrequenz')"></app-vital-sign-card>
+        <app-vital-sign-card [vertical]="true" [vitalSign]="getVitalSign('Blutdruck')"></app-vital-sign-card>
+        <app-vital-sign-card [vertical]="true" [vitalSign]="getVitalSign('Blutzucker')"></app-vital-sign-card>
+      </div>
+    </div>
+    <div class="vital-signs">
+      <p>Lebensstil:</p>
+      <div class="vital-signs-frame">
+        <app-vital-sign-card [vertical]="true" [vitalSign]="getVitalSign('Raucherstatus')"></app-vital-sign-card>
+        <app-vital-sign-card [vertical]="true" [vitalSign]="getVitalSign('Aktivität')"></app-vital-sign-card>
+      </div>
+    </div>
+  </div>
+</div>

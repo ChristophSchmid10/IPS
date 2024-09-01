@@ -1,8 +1,8 @@
 export interface VitalSign {
   id: number;
-  name: string;
-  value?: string | number;
-  unit?: string;
-  delta?: string;
-  measuredAt?: Date;
+  name: string | null;
+  value: string | number | null;
+  unit: string | null;
+  delta: number | null;
+  measuredAt: Date | null;
 }

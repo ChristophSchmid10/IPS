@@ -1,0 +1,57 @@
+
+<div *ngIf="!vertical; else verticalCard" class="vital-sign-card" (click)="onCardClick(vitalSign, Data.VitalSign)">
+  <div class="icon-frame">
+    <div class="background-container">
+      <img [src]="'assets/Icons/Vital-Signs/' + vitalSign?.name + '.svg'">
+    </div>
+    <div class="vital-sign-and-date">
+      <p class="vital-sign">{{ vitalSign?.name }}</p>
+      <p class="date">{{ vitalSign?.measuredAt | date: 'dd.MM.yyyy' }}</p>
+    </div>
+  </div>
+  <div class="value-delta">
+    <div class="value-container">
+      <p class="value">{{ vitalSign?.value ? vitalSign?.value : '-' }}</p>
+      <p class="unit">{{ vitalSign?.unit }}</p>
+    </div>
+    <div *ngIf="vitalSign?.delta !== null" class="delta-container">
+      <img src="assets/Icons/Chevron_Vital-Sign.svg">
+      <p class="delta">{{ vitalSign?.delta }}{{ vitalSign?.unit }}</p>
+    </div>
+  </div>
+</div>
+
+<ng-template #verticalCard>
+  <div class="vertical-frame vital-sign-card" (click)="onCardClick(vitalSign, Data.VitalSign)">
+    <div class="icon-sign-date">
+      <div class="icon-frame">
+        <div class="background-container">
+          <img [src]="'assets/Icons/Vital-Signs/' + vitalSign?.name + '.svg'">
+        </div>
+      </div>
+      <div class="vital-sign-and-date">
+        <p class="vital-sign">{{ vitalSign?.name }}</p>
+        <p class="date">{{ vitalSign?.measuredAt ? (vitalSign?.measuredAt | date: 'dd.MM.yyyy') : '&nbsp;'}}</p>
+      </div>
+      <div *ngIf="vitalSign?.name === 'Body-Mass-Index'" class="data-scale">
+        <div class="scale"></div>
+        <div class="values">
+          <p>15</p>
+          <p>25</p>
+          <p>40</p>
+        </div>
+        <img src="assets/Icons/Vital-Signs/Actual_Value.svg">
+      </div>
+    </div>
+    <div class="value-delta">
+      <div class="value-container">
+        <p class="value">{{ vitalSign?.value ? vitalSign?.value : '-' }}</p>
+        <p class="unit">{{ vitalSign?.unit }}</p>
+      </div>
+      <div *ngIf="vitalSign?.delta !== null" class="delta-container">
+        <img src="assets/Icons/Chevron_Vital-Sign.svg">
+        <p class="delta">{{ vitalSign?.delta }}{{ vitalSign?.unit }}</p>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -6,6 +6,7 @@ import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { TableComponent } from './overview/table/table.component';
 import { Data } from './enums/data.enum';
 import { OverviewComponent } from './overview/overview.component';
+import {VitalSignsComponent} from "./vital-signs/vital-signs.component";
 
 @Component({
   selector: 'app-root',
@@ -18,6 +19,7 @@ import { OverviewComponent } from './overview/overview.component';
     MatTabGroup,
     TableComponent,
     OverviewComponent,
+    VitalSignsComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',

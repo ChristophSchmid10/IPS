@@ -1,0 +1,120 @@
+
+.section {
+  display: flex;
+  padding: 16px;
+  align-items: flex-start;
+  gap: 32px;
+  align-self: stretch;
+}
+
+.body-measures, .vital-signs-history {
+  flex: 1;
+}
+
+.body-measures {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  background: #FFF;
+}
+
+.body-measures p {
+  color: #000;
+  text-align: center;
+  font-family: Mulish;
+  font-size: 25.239px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+}
+
+.body-measurements {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  width: 100%;
+}
+
+.height-weight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  width: 50%;
+}
+
+.bmi-container {
+  width: 50%;
+}
+
+.body-circumferences {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 16px;
+}
+
+.body-sketch-container {
+  display: flex;
+  width: 50%;
+  justify-content: center;
+}
+
+.body-sketch {
+  width: 220px;
+  height: 520px;
+}
+
+.circumferences {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 16px;
+  width: 50%;
+}
+
+.vital-signs-history {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.vital-signs {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  border-radius: 10px;
+  background: #FFF;
+  width: 100%;
+}
+
+.vital-signs p {
+  color: #000;
+  text-align: center;
+  font-family: Mulish;
+  font-size: 25.239px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+}
+
+.vital-signs-frame {
+  display: flex;
+  width: 100%;
+}
+
+.vital-signs-frame app-vital-sign-card {
+  flex: 1;
+  margin: 0 5px;
+}
+
+app-vital-sign-card {
+  width: 100%;
+  display: flex;
+}
