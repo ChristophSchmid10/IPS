@@ -5,14 +5,17 @@
       <img [src]="getImage()">
       <p>{{dataType.toString()}}</p>
     </div>
-    <input type="text" (input)="applyFilter($event)" placeholder="Filter" class="filter-input">
+    <div class="search-container">
+      <img src="assets/Icons/search.svg" class="search-icon">
+      <input type="text" (input)="applyFilter($event)" [placeholder]="dataType.toString() + ' suchen'" class="filter-input">
+    </div>
   </div>
   <div class="table-container">
     <div class="table-wrapper">
       <table>
         <thead class="sticky-header">
         <tr>
-          <th *ngFor="let headerLabel of headerLabels">{{headerLabel}}</th>
+          <th *ngFor="let headerLabel of headerLabels; let i = index" (click)="sortData(i)">{{headerLabel}}</th>
         </tr>
         </thead>
         <tbody>
@@ -20,12 +23,12 @@
           <td>{{dataSet?.name}}</td>
           <td *ngIf="dataType == Data.Medication || dataType == Data.Procedure || dataType == Data.Diagnosis">{{dataSet?.status}}</td>
           <td *ngIf="dataType == Data.Medication">{{dataSet?.dosage}}</td>
-          <td *ngIf="dataType == Data.Medication">{{dataSet?.startDate | date: 'dd.MM.YYYY'}}</td>
-          <td *ngIf="dataType == Data.Medication">{{dataSet?.endDate | date: 'dd.MM.YYYY'}}</td>
-          <td *ngIf="dataType == Data.Diagnosis">{{dataSet?.startDate | date: 'dd.MM.YYYY'}}</td>
-          <td *ngIf="dataType == Data.Procedure">{{dataSet?.doneAt | date: 'dd.MM.YYYY'}}</td>
+          <td *ngIf="dataType == Data.Medication">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.Medication">{{dataSet?.endDate | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.Diagnosis">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.Procedure">{{dataSet?.doneAt | date: 'dd.MM.yyyy'}}</td>
           <td *ngIf="dataType == Data.LabValue">{{dataSet?.value}}</td>
-          <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredAt | date: 'dd.MM.YYYY'}}</td>
+          <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredAt | date: 'dd.MM.yyyy'}}</td>
           <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredFrom}}</td>
         </tr>
         </tbody>

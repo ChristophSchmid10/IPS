@@ -35,8 +35,7 @@
 }
 
 .table-view-header .filter-input {
-  width: 337px;
-  padding: 8px;
+  width: auto;
 }
 
 .table-container {
@@ -98,4 +97,32 @@ tbody tr {
 
 tbody tr:last-child td {
   border-bottom: none; /* Remove bottom border for the last row */
+}
+
+.search-container {
+  position: relative;
+  display: inline-block;
+}
+
+.filter-input {
+  width: 100%;
+  padding: 10px 20px 10px 40px; /* Platz für das Icon */
+  border-radius: 25px; /* Runder Rahmen */
+  border: 2px solid #ccc;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.filter-input:focus {
+  border-color: #007BFF; /* Farbe ändern bei Fokus */
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #aaa;
 }

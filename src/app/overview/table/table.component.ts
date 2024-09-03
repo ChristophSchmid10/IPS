@@ -34,6 +34,8 @@ export class TableComponent implements OnInit, OnChanges {
   dataToShow: any = [];
   filterText: string = '';
   headerLabels: string[] = [];
+  sortColumnIndex: number | null = null;
+  sortDirection: 'asc' | 'desc' = 'asc';
 
   constructor(
     private medicationService: MedicationService,
@@ -117,9 +119,28 @@ export class TableComponent implements OnInit, OnChanges {
     const dialogRef = this.dialog.open(ValueDialogComponent, {
       data: [dataType, dataSet],
     });
+  }
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log('The dialog was closed');
+  sortData(columnIndex: number) {
+    if (this.sortColumnIndex === columnIndex) {
+      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
+    } else {
+      this.sortColumnIndex = columnIndex;
+      this.sortDirection = 'asc';
+    }
+
+    const key = this.headerLabels[columnIndex].toLowerCase().replace(' ', '');
+    this.filteredData.sort((a:any, b:any) => {
+      const valueA = a[key];
+      const valueB = b[key];
+
+      if (valueA < valueB) {
+        return this.sortDirection === 'asc' ? -1 : 1;
+      } else if (valueA > valueB) {
+        return this.sortDirection === 'asc' ? 1 : -1;
+      } else {
+        return 0;
+      }
     });
   }
 }

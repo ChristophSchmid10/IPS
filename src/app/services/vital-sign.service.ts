@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { VitalSign } from '../models/vital-sign.model';
+import {SearchFieldData} from "../models/search-field-data.model";
+import {Data} from "../enums/data.enum";
 
 @Injectable({
   providedIn: 'root',
@@ -101,5 +103,18 @@ export class VitalSignService {
 
   getVitalSigns(): Observable<VitalSign[]> {
     return of(this.vitalSigns);
+  }
+
+  getVitalSignNames(): Observable<SearchFieldData[]> {
+    return of(this.vitalSigns.map(vitalSign => ({
+      id: vitalSign.id,
+      name: vitalSign.name,
+      dataType: Data.VitalSign
+    })));
+  }
+
+  getVitalSignById(id: number): Observable<VitalSign | undefined> {
+    const vitalSign = this.vitalSigns.find(vitalSign => vitalSign.id === id);
+    return of(vitalSign);
   }
 }

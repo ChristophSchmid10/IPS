@@ -22,7 +22,7 @@
             </div>
           </div>
           <app-allergy-warning></app-allergy-warning>
-          <app-global-search-field></app-global-search-field>
+          <app-global-search-field (click)="stopPropagation($event)"></app-global-search-field>
         </div>
       </div>
     </div>

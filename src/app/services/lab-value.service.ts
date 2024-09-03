@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Status } from '../enums/status.enum';
 import { LabValue } from '../models/lab-value.model';
+import {SearchFieldData} from "../models/search-field-data.model";
+import {Data} from "../enums/data.enum";
 
 @Injectable({
   providedIn: 'root',
@@ -104,5 +106,12 @@ export class LabValueService {
 
   getLabValues(): Observable<LabValue[]> {
     return of(this.labValues);
+  }
+  getLabValueNames(): Observable<SearchFieldData[]> {
+    return of(this.labValues.map(labValue => ({
+      id: labValue.id,
+      name: labValue.name,
+      dataType: Data.LabValue
+    })));
   }
 }

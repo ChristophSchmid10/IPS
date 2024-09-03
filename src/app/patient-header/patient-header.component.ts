@@ -68,4 +68,8 @@ export class PatientHeaderComponent implements OnInit {
     }
     return age;
   }
+
+  stopPropagation($event: MouseEvent) {
+    $event.stopPropagation();
+  }
 }

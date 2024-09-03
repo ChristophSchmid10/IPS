@@ -1,7 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Medication } from '../models/medication.model';
-import { Status } from '../enums/status.enum';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {Medication} from '../models/medication.model';
+import {Status} from '../enums/status.enum';
+import {SearchFieldData} from "../models/search-field-data.model";
+import {Data} from "../enums/data.enum";
+import {Diagnosis} from "../models/diagnosis.model";
 
 @Injectable({
   providedIn: 'root',
@@ -77,4 +80,18 @@ export class MedicationService {
   getMedications(): Observable<Medication[]> {
     return of(this.medications);
   }
+
+  getMedicationNames(): Observable<SearchFieldData[]> {
+    return of(this.medications.map(medication => ({
+      id: medication.id,
+      name: medication.name,
+      dataType: Data.Medication
+    })));
+  }
+
+  getMedicationById(id: number): Observable<Medication | undefined> {
+    const medication = this.medications.find(medication => medication.id === id);
+    return of(medication);
+  }
+
 }

@@ -13,8 +13,17 @@ import {
   MatAutocompleteTrigger,
   MatOption,
 } from '@angular/material/autocomplete';
-import { map, Observable, startWith } from 'rxjs';
-import { AsyncPipe, NgForOf } from '@angular/common';
+import {debounceTime, map, Observable, startWith} from 'rxjs';
+import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
+import {MedicationService} from "../../services/medication.service";
+import {DiagnosisService} from "../../services/diagnosis.service";
+import {LabValueService} from "../../services/lab-value.service";
+import {ProcedureService} from "../../services/procedure.service";
+import {VitalSignService} from "../../services/vital-sign.service";
+import {SearchFieldData} from "../../models/search-field-data.model";
+import {ValueDialogComponent} from "../../shared/value-dialog/value-dialog.component";
+import {Data} from "../../enums/data.enum";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-global-search-field',
@@ -31,27 +40,108 @@ import { AsyncPipe, NgForOf } from '@angular/common';
     AsyncPipe,
     ReactiveFormsModule,
     NgForOf,
+    NgIf,
   ],
 
   templateUrl: './global-search-field.component.html',
   styleUrl: './global-search-field.component.css',
 })
 export class GlobalSearchFieldComponent implements OnInit {
-  myControl = new FormControl();
-  options: string[] = ['One', 'Two', 'Three', 'Four', 'Five'];
-  filteredOptions!: Observable<string[]>;
+  searchControl = new FormControl('');
+  options: string[] = [];
+  filteredOptions: SearchFieldData[] = [];
+  loadedData: SearchFieldData[] = [];
 
-  ngOnInit() {
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(''),
-      map((value) => this._filter(value)),
-    );
+  constructor(private medicationService: MedicationService,
+              private diagnosisService: DiagnosisService,
+              private labValueService: LabValueService,
+              private procedureService: ProcedureService,
+              private vitalSignService: VitalSignService,
+              private dialog: MatDialog) {
   }
 
-  private _filter(value: string): string[] {
+  ngOnInit() {
+
+    this.loadData();
+
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300)
+    ).subscribe(value => {
+      this.filteredOptions = this._filter(value || "");
+    });
+  }
+
+  private _filter(value: string): SearchFieldData[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter((option) =>
-      option.toLowerCase().includes(filterValue),
-    );
+    return this.loadedData.filter(option => option.name.toLowerCase().includes(filterValue));
+  }
+
+  selectOption(option: SearchFieldData) {
+    this.searchControl.setValue(option.name);
+    this.filteredOptions = [];
+    this.onRowClick(option.id, option.dataType)
+  }
+
+  loadData() {
+    this.medicationService.getMedicationNames().subscribe(medicationData => {
+      this.loadedData = this.loadedData.concat(medicationData);
+      this.options = this.options.concat(this.loadedData.map(data => data.name));
+
+    });
+    this.diagnosisService.getDiagnosesNames().subscribe(diagnosesData => {
+      this.loadedData = this.loadedData.concat(diagnosesData);
+      this.options = this.options.concat(this.loadedData.map(data => data.name));
+    });
+
+    this.labValueService.getLabValueNames().subscribe(labValuesData => {
+      this.loadedData = this.loadedData.concat(labValuesData);
+      this.options = this.options.concat(this.loadedData.map(data => data.name));
+    });
+
+    this.procedureService.getProcedureNames().subscribe(procedureData => {
+      this.loadedData = this.loadedData.concat(procedureData);
+      this.options = this.options.concat(this.loadedData.map(data => data.name));
+    });
+
+    this.vitalSignService.getVitalSignNames().subscribe(vitalSignData => {
+      this.loadedData = this.loadedData.concat(vitalSignData);
+      this.options = this.options.concat(this.loadedData.map(data => data.name));
+    });
+  }
+
+  onRowClick(id: number, dataType: Data): void {
+    let dataSet: any;
+    switch (dataType) {
+      case Data.VitalSign:
+        this.vitalSignService.getVitalSignById(id).subscribe(vitalSign => {
+          dataSet = vitalSign;
+          this.openDialog(dataType, dataSet);
+        });
+        break;
+      case Data.Diagnosis:
+        this.diagnosisService.getDiagnosisById(id).subscribe(diagnosis => {
+          dataSet = diagnosis;
+          this.openDialog(dataType, dataSet);
+        });
+        break;
+      case Data.Medication:
+        this.medicationService.getMedicationById(id).subscribe(medication => {
+          dataSet = medication;
+          this.openDialog(dataType, dataSet);
+        });
+        break;
+      case Data.Procedure:
+        this.procedureService.getProcedureById(id).subscribe(procedure => {
+          dataSet = procedure;
+          this.openDialog(dataType, dataSet);
+        });
+        break;
+    }
+  }
+
+  openDialog(dataType: Data, dataSet: any) {
+    const dialogRef = this.dialog.open(ValueDialogComponent, {
+      data: [dataType, dataSet],
+    });
   }
 }

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Status } from '../enums/status.enum';
 import { Diagnosis } from '../models/diagnosis.model';
+import {SearchFieldData} from "../models/search-field-data.model";
+import {Data} from "../enums/data.enum";
+import {VitalSign} from "../models/vital-sign.model";
 
 @Injectable({
   providedIn: 'root',
@@ -105,4 +108,18 @@ export class DiagnosisService {
   getDiagnoses(): Observable<Diagnosis[]> {
     return of(this.diagnoses);
   }
+
+  getDiagnosesNames(): Observable<SearchFieldData[]> {
+    return of(this.diagnoses.map(diagnosis => ({
+      id: diagnosis.id,
+      name: diagnosis.name,
+      dataType: Data.Diagnosis
+    })));
+  }
+
+  getDiagnosisById(id: number): Observable<Diagnosis | undefined> {
+    const diagnosis = this.diagnoses.find(diagnosis => diagnosis.id === id);
+    return of(diagnosis);
+  }
+
 }

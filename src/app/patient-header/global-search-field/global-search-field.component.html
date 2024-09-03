@@ -1,14 +1,10 @@
-<mat-form-field class="example-full-width">
-  <mat-label>Number</mat-label>
-  <input type="text"
-         placeholder="Pick one"
-         aria-label="Number"
-         matInput
-         [formControl]="myControl"
-         [matAutocomplete]="auto">
-  <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-    <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-      {{ option }}
-    </mat-option>
-  </mat-autocomplete>
-</mat-form-field>
+
+<div class="search-container">
+  <img src="assets/Icons/search.svg" class="search-icon">
+  <input class="filter-input" [formControl]="searchControl" type="search" placeholder="Suchen...">
+  <ul *ngIf="filteredOptions.length > 0" class="autocomplete-list">
+    <li *ngFor="let option of filteredOptions" (click)="selectOption(option)">
+      {{ option.name }}
+    </li>
+  </ul>
+</div>
