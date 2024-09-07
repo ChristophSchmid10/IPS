@@ -1,34 +1,25 @@
-.main {
+/* app.component.css */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.wrapper {
   display: flex;
-  align-items: flex-start;
   flex-direction: column;
-  padding: 1rem;
-  background: #e0edff;
-  justify-content: flex-start;
+  min-height: 100vh;
 }
 
-.patient-header-frame {
-  width: 100%;
-}
-app-patient-header {
-  width: inherit;
-}
-
-mat-tab-group {
-  width: 100%;
+.wrapper-content {
+  flex: 1;
+  padding: 1rem 1rem 0 1rem;
+  background: #E0EDFF;
 }
 
-mat-tab {
-  background: white;
-}
 
-.tabs {
-  width: calc(100% + 2rem);
-  margin-left: -1rem;
-  margin-top: 1rem;
-  background: white;
-}
-
-.mat-mdc-dialog-surface {
-  border-radius: 10px;
+footer {
+  padding: 10px 0;
+  text-align: center;
+  background-color: #f1f1f1;
+  border-top: 1px solid #ccc;
 }

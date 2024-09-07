@@ -1,0 +1,26 @@
+
+.patient-header-frame {
+  width: 100%;
+}
+app-patient-header {
+  width: inherit;
+}
+
+mat-tab-group {
+  width: 100%;
+}
+
+mat-tab {
+  background: white;
+}
+
+.tabs {
+  width: calc(100% + 2rem);
+  margin-left: -1rem;
+  margin-top: 1rem;
+  background: white;
+}
+
+.mat-mdc-dialog-surface {
+  border-radius: 10px;
+}

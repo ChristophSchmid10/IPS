@@ -1,21 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { AllergyWarningComponent } from './allergy-warning/allergy-warning.component';
-import { GlobalSearchFieldComponent } from './global-search-field/global-search-field.component';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
+import {Component, OnInit} from '@angular/core';
+import {AllergyWarningComponent} from './allergy-warning/allergy-warning.component';
+import {GlobalSearchFieldComponent} from './global-search-field/global-search-field.component';
+import {MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
 import {
   MatExpansionPanel,
   MatExpansionPanelDescription,
   MatExpansionPanelHeader,
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
-import { MatInput } from '@angular/material/input';
-import { Patient } from '../models/patient.model';
-import { PatientService } from '../services/patient.service';
-import { DatePipe, NgIf } from '@angular/common';
-import { MatTab, MatTabGroup } from '@angular/material/tabs';
-import { TableComponent } from '../overview/table/table.component';
+import {MatFormField, MatLabel} from '@angular/material/form-field';
+import {MatInput} from '@angular/material/input';
+import {Patient} from '../models/patient.model';
+import {PatientService} from '../services/patient.service';
+import {DatePipe, NgIf} from '@angular/common';
+import {MatTab, MatTabGroup} from '@angular/material/tabs';
+import {TableComponent} from '../overview/table/table.component';
+import {Router} from "@angular/router";
+import {PatientEnum} from "../enums/patient.enum";
+import {MatChip} from "@angular/material/chips";
 
 @Component({
   selector: 'app-patient-header',
@@ -37,19 +40,29 @@ import { TableComponent } from '../overview/table/table.component';
     MatTabGroup,
     MatTab,
     TableComponent,
+    MatChip,
   ],
   templateUrl: './patient-header.component.html',
   styleUrl: './patient-header.component.css',
 })
 export class PatientHeaderComponent implements OnInit {
-  patient: Patient | null = null;
+  patient: Patient | null | undefined = null;
 
-  constructor(private patientService: PatientService) {}
+  constructor(private patientService: PatientService,
+              private router: Router) {}
 
   ngOnInit(): void {
-    this.patientService.getPatientData().subscribe((data: Patient) => {
-      this.patient = data;
-    });
+
+    if (this.router.url === '/preventive-medical-checkup') {
+      this.patientService.getPatientData(PatientEnum.MedicalCheckup).subscribe(data => {
+        this.patient = data;
+      });
+    } else {
+      this.patientService.getPatientData(PatientEnum.NoProblems).subscribe(data => {
+        this.patient = data;
+      });
+    }
+
   }
 
   calculateAge(dateOfBirth?: Date): number | null {

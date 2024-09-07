@@ -1,3 +1,5 @@
+import {PatientEnum} from "../enums/patient.enum";
+
 export interface Patient {
   firstName: string;
   middleName?: string;
@@ -12,4 +14,5 @@ export interface Patient {
   lastUpdatedOn?: Date;
   lastUpdateFrom?: string;
   SVNR?: string;
+  patientType: PatientEnum;
 }

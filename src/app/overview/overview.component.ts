@@ -25,6 +25,5 @@ export class OverviewComponent implements OnInit {
     const temp = this.tableOrder[number];
     this.tableOrder[number] = this.tableOrder[0];
     this.tableOrder[0] = temp;
-    console.log(this.tableOrder);
   }
 }

@@ -177,29 +177,16 @@
   }
 </style>
 
-<main class="main">
-    <app-patient-header></app-patient-header>
-  <div class="tabs">
-    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="custom-tab-group">
-      <mat-tab label="Übersicht">
-        <app-overview></app-overview>
-      </mat-tab>
-      <mat-tab label="Vitalparameter">
-        <app-vital-signs></app-vital-signs>
-      </mat-tab>
-    </mat-tab-group>
+
+<div class="wrapper">
+  <div class="wrapper-content">
+    <router-outlet></router-outlet>
   </div>
+  <footer>
+    <p>© 2024 Christoph Schmid</p>
+  </footer>
+</div>
 
 
-</main>
-
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * is only a placeholder * * * * * * * * * * * -->
-<!-- * * * * * * * * * * and can be replaced.  * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * End of Placeholder  * * * * * * * * * * * * -->
-<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />

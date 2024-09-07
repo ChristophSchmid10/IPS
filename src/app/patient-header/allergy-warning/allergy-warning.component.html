@@ -1,6 +1,7 @@
-<div class="allergy-banner">
-  <img alt="Allergy-Icon" src="/assets/Icons/Allergy-Icon.svg" height="52px">
+<div class="allergy-banner" [ngClass]="patientType === PatientEnum.NoProblems ? 'no-problems' : ''">
+<img alt="Allergy-Icon" src="/assets/Icons/Allergy-Icon.svg" height="52px">
   <div class="allergy-text-frame">
-    <p class="allergy-text">Der Patient hat eine Allergie gegen: </p><b>Penicillin</b>
+    <p *ngIf=" patientType === PatientEnum.MedicalCheckup" class="allergy-text">Der Patient hat eine Allergie gegen: </p><b *ngIf=" patientType === PatientEnum.MedicalCheckup">Penicillin</b>
+    <p *ngIf=" patientType === PatientEnum.NoProblems" class="allergy-text">Keine bekannten Allergien!</p>
   </div>
 </div>

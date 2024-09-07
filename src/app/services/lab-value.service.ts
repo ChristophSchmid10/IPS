@@ -4,12 +4,13 @@ import { Status } from '../enums/status.enum';
 import { LabValue } from '../models/lab-value.model';
 import {SearchFieldData} from "../models/search-field-data.model";
 import {Data} from "../enums/data.enum";
+import {PatientEnum} from "../enums/patient.enum";
 
 @Injectable({
   providedIn: 'root',
 })
 export class LabValueService {
-  private labValues: LabValue[] = [
+  private labValuesPreventive: LabValue[] = [
     {
       id: 1,
       name: 'ABO and Rh group [Type] in Blood',
@@ -102,16 +103,32 @@ export class LabValueService {
     },
   ];
 
+  private labValuesNoProblem: LabValue[] = [];
+
   constructor() {}
 
-  getLabValues(): Observable<LabValue[]> {
-    return of(this.labValues);
+  getLabValues(patientType: PatientEnum): Observable<LabValue[]> {
+    return patientType === PatientEnum.MedicalCheckup ? of(this.labValuesPreventive) : of(this.labValuesNoProblem);
   }
-  getLabValueNames(): Observable<SearchFieldData[]> {
-    return of(this.labValues.map(labValue => ({
-      id: labValue.id,
-      name: labValue.name,
-      dataType: Data.LabValue
-    })));
+
+  getLabValueNames(patientType: PatientEnum): Observable<SearchFieldData[]> {
+    if (patientType === PatientEnum.MedicalCheckup) {
+      return of(this.labValuesPreventive.map(labValue => ({
+        id: labValue.id,
+        name: labValue.name,
+        dataType: Data.Medication
+      })));
+    } else {
+      return of(this.labValuesNoProblem.map(labValue => ({
+        id: labValue.id,
+        name: labValue.name,
+        dataType: Data.Medication
+      })));
+    }
+  }
+
+  getLabValueById(patientType: PatientEnum, id: number): Observable<LabValue | undefined> {
+    const labValue = patientType === PatientEnum.MedicalCheckup ? this.labValuesPreventive.find(labValue => labValue.id === id) : this.labValuesNoProblem.find(labValue => labValue.id === id);
+    return of(labValue);
   }
 }

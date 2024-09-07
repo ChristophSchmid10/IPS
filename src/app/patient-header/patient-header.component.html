@@ -11,7 +11,6 @@
               <p class="name">{{patient?.firstName}} {{patient?.middleName}} {{patient?.lastName}}</p>
               <div class="gender-and-birthday">
                 <div class="gender">
-                  <img src="assets/Icons/Gender.svg">
                   <p>{{patient?.gender}}</p>
                 </div>
                 <div *ngIf="patient?.dateOfBirth" class="birthday">
@@ -20,8 +19,8 @@
                 </div>
               </div>
             </div>
+            <app-allergy-warning [patientType]="patient?.patientType"></app-allergy-warning>
           </div>
-          <app-allergy-warning></app-allergy-warning>
           <app-global-search-field (click)="stopPropagation($event)"></app-global-search-field>
         </div>
       </div>

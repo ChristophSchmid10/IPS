@@ -1,30 +1,27 @@
 // src/app/components/table/table.component.ts
 
-import {
-  Component,
-  EventEmitter,
-  Input,
-  OnChanges,
-  OnInit,
-  Output,
-} from '@angular/core';
-import { MedicationService } from '../../services/medication.service';
-import { Medication } from '../../models/medication.model';
-import { DatePipe, NgForOf, NgIf } from '@angular/common';
-import { Data } from '../../enums/data.enum';
-import { DiagnosisService } from '../../services/diagnosis.service';
-import { Diagnosis } from '../../models/diagnosis.model';
-import { LabValueService } from '../../services/lab-value.service';
-import { ProcedureService } from '../../services/procedure.service';
-import { MatIconButton } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
-import { ValueDialogComponent } from '../../shared/value-dialog/value-dialog.component';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output,} from '@angular/core';
+import {MedicationService} from '../../services/medication.service';
+import {Medication} from '../../models/medication.model';
+import {DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
+import {Data} from '../../enums/data.enum';
+import {DiagnosisService} from '../../services/diagnosis.service';
+import {Diagnosis} from '../../models/diagnosis.model';
+import {LabValueService} from '../../services/lab-value.service';
+import {ProcedureService} from '../../services/procedure.service';
+import {MatIconButton} from '@angular/material/button';
+import {MatDialog} from '@angular/material/dialog';
+import {ValueDialogComponent} from '../../shared/value-dialog/value-dialog.component';
+import {Router} from "@angular/router";
+import {PatientEnum} from "../../enums/patient.enum";
+import {MatChip} from "@angular/material/chips";
+import {Status} from "../../enums/status.enum";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   standalone: true,
-  imports: [DatePipe, NgForOf, NgIf, MatIconButton],
+  imports: [DatePipe, NgForOf, NgIf, MatIconButton, MatChip, NgClass],
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit, OnChanges {
@@ -34,8 +31,9 @@ export class TableComponent implements OnInit, OnChanges {
   dataToShow: any = [];
   filterText: string = '';
   headerLabels: string[] = [];
-  sortColumnIndex: number | null = null;
-  sortDirection: 'asc' | 'desc' = 'asc';
+  patientType: PatientEnum = PatientEnum.MedicalCheckup;
+  dataLoaded = false;
+
 
   constructor(
     private medicationService: MedicationService,
@@ -43,9 +41,11 @@ export class TableComponent implements OnInit, OnChanges {
     private labValueService: LabValueService,
     private procedureServices: ProcedureService,
     private dialog: MatDialog,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.router.url === '/preventive-medical-checkup' ? this.patientType = PatientEnum.MedicalCheckup : this.patientType = PatientEnum.NoProblems;
     switch (this.dataType) {
       case Data.Medication:
         this.headerLabels = [
@@ -55,15 +55,17 @@ export class TableComponent implements OnInit, OnChanges {
           'Einnahme seit',
           'Einnahme bis',
         ];
+
         this.medicationService
-          .getMedications()
+          .getMedications(this.patientType)
           .subscribe((data: Medication[]) => {
             this.dataToShow = data;
+            this.dataLoaded = true;
           });
         break;
       case Data.Diagnosis:
         this.headerLabels = ['Diagnose', 'Status', 'Bekannt seit'];
-        this.diagnosisService.getDiagnoses().subscribe((data: Diagnosis[]) => {
+        this.diagnosisService.getDiagnoses(this.patientType).subscribe((data: Diagnosis[]) => {
           this.dataToShow = data;
         });
         break;
@@ -74,14 +76,14 @@ export class TableComponent implements OnInit, OnChanges {
           'Gemessen am',
           'Gemessen von',
         ];
-        this.labValueService.getLabValues().subscribe((data: Diagnosis[]) => {
+        this.labValueService.getLabValues(this.patientType).subscribe((data: Diagnosis[]) => {
           this.dataToShow = data;
         });
         break;
       case Data.Procedure:
-        this.headerLabels = ['Diagnose', 'Status', 'Durchgeführt/Geplant am'];
+        this.headerLabels = ['Einriff', 'Status', 'Durchgeführt/Geplant am'];
         this.procedureServices
-          .getProcedures()
+          .getProcedures(this.patientType)
           .subscribe((data: Diagnosis[]) => {
             this.dataToShow = data;
           });
@@ -121,26 +123,10 @@ export class TableComponent implements OnInit, OnChanges {
     });
   }
 
-  sortData(columnIndex: number) {
-    if (this.sortColumnIndex === columnIndex) {
-      this.sortDirection = this.sortDirection === 'asc' ? 'desc' : 'asc';
-    } else {
-      this.sortColumnIndex = columnIndex;
-      this.sortDirection = 'asc';
-    }
-
-    const key = this.headerLabels[columnIndex].toLowerCase().replace(' ', '');
-    this.filteredData.sort((a:any, b:any) => {
-      const valueA = a[key];
-      const valueB = b[key];
-
-      if (valueA < valueB) {
-        return this.sortDirection === 'asc' ? -1 : 1;
-      } else if (valueA > valueB) {
-        return this.sortDirection === 'asc' ? 1 : -1;
-      } else {
-        return 0;
-      }
-    });
+  isStatus(value: any): boolean {
+    return Object.values(Status).includes(value);
   }
+
+  protected readonly PatientEnum = PatientEnum;
+  protected readonly Status = Status;
 }

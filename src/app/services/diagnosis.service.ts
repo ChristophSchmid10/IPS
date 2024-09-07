@@ -5,12 +5,14 @@ import { Diagnosis } from '../models/diagnosis.model';
 import {SearchFieldData} from "../models/search-field-data.model";
 import {Data} from "../enums/data.enum";
 import {VitalSign} from "../models/vital-sign.model";
+import {PatientEnum} from "../enums/patient.enum";
+import {Medication} from "../models/medication.model";
 
 @Injectable({
   providedIn: 'root',
 })
 export class DiagnosisService {
-  private diagnoses: Diagnosis[] = [
+  private diagnosesPreventive: Diagnosis[] = [
     {
       id: 1,
       name: 'Chronic kidney disease stage 3B',
@@ -103,22 +105,32 @@ export class DiagnosisService {
     },
   ];
 
+  private diagnosesNoProblem: Diagnosis[] = [];
+
   constructor() {}
 
-  getDiagnoses(): Observable<Diagnosis[]> {
-    return of(this.diagnoses);
+  getDiagnoses(patientType: PatientEnum): Observable<Diagnosis[]> {
+    return patientType === PatientEnum.MedicalCheckup ? of(this.diagnosesPreventive) : of(this.diagnosesNoProblem);
   }
 
-  getDiagnosesNames(): Observable<SearchFieldData[]> {
-    return of(this.diagnoses.map(diagnosis => ({
-      id: diagnosis.id,
-      name: diagnosis.name,
-      dataType: Data.Diagnosis
-    })));
+  getDiagnosesNames(patientType: PatientEnum): Observable<SearchFieldData[]> {
+    if (patientType === PatientEnum.MedicalCheckup) {
+      return of(this.diagnosesPreventive.map(diagnosis => ({
+        id: diagnosis.id,
+        name: diagnosis.name,
+        dataType: Data.Medication
+      })));
+    } else {
+      return of(this.diagnosesNoProblem.map(diagnosis => ({
+        id: diagnosis.id,
+        name: diagnosis.name,
+        dataType: Data.Medication
+      })));
+    }
   }
 
-  getDiagnosisById(id: number): Observable<Diagnosis | undefined> {
-    const diagnosis = this.diagnoses.find(diagnosis => diagnosis.id === id);
+  getDiagnosisById(patientType: PatientEnum, id: number): Observable<Diagnosis | undefined> {
+    const diagnosis = patientType === PatientEnum.MedicalCheckup ? this.diagnosesPreventive.find(diagnosis => diagnosis.id === id) : this.diagnosesNoProblem.find(diagnosis => diagnosis.id === id);
     return of(diagnosis);
   }
 

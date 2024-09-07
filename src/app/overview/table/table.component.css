@@ -73,7 +73,7 @@ thead.sticky-header {
 thead.sticky-header th {
   padding-left: 12px;
   text-align: start;
-  height: 30px;
+  height: 40px;
 }
 
 thead.sticky-header th:first-child {
@@ -92,7 +92,7 @@ tbody td {
 }
 
 tbody tr {
-  height: 30px;
+  height: 40px;
 }
 
 tbody tr:last-child td {
@@ -125,4 +125,59 @@ tbody tr:last-child td {
   transform: translateY(-50%);
   font-size: 20px;
   color: #aaa;
+}
+
+.no-data {
+  color: #7F7F7F;
+  font-family: Mulish;
+  font-size: 35px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-align: center;
+  width: 100%;
+}
+
+mat-chip {
+  background: #E7FFF1;
+
+  span {
+    font-family: Mulish;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+}
+
+mat-chip.Aktiv {
+  background: #E7FFF1;
+
+  span {
+    color: #508969;
+  }
+}
+
+mat-chip.Abgeschlossen {
+  background: #C9C9C9;
+
+  span {
+    color: #4D4D4D;
+  }
+}
+
+mat-chip.Nicht {
+  background: #C9C9C9;
+
+  span {
+    color: #4D4D4D;
+  }
+}
+
+mat-chip.Familiär {
+  background: #FFCE84;
+
+  span {
+    color: #B45600;
+  }
 }

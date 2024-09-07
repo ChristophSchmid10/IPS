@@ -7,6 +7,11 @@
   padding: 0px 16px;
   gap: 16px;
 }
+
+.allergy-banner.no-problems {
+  background: #76A100;
+
+}
 .allergy-text-frame {
   display: flex;
 
@@ -19,7 +24,7 @@
     color: #fff;
     text-align: center;
     font-family: Mulish, serif;
-    font-size: 25px;
+    font-size: 20px;
     font-style: normal;
 
     line-height: normal;

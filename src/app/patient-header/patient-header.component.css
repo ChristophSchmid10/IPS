@@ -11,6 +11,7 @@ mat-expansion-panel {
   border-radius: 10px;
   background: white;
   height: auto;
+  overflow: visible; /* Hinzugefügt */
 }
 
 mat-expansion-panel-header {
@@ -19,6 +20,9 @@ mat-expansion-panel-header {
   box-shadow: none;
   border-radius: 10px;
   height: auto !important;
+  overflow: visible; /* Hinzugefügt */
+  position: relative; /* Hinzugefügt */
+  z-index: 1; /* Hinzugefügt */
 }
 
 /* Header Frame */
@@ -47,6 +51,7 @@ mat-expansion-panel-header {
   align-items: center;
   justify-content: space-between;
   flex: 1 0 0;
+  padding-right: 1rem;
 }
 
 .avatar-and-name {

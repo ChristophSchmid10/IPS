@@ -4,13 +4,13 @@ import {Medication} from '../models/medication.model';
 import {Status} from '../enums/status.enum';
 import {SearchFieldData} from "../models/search-field-data.model";
 import {Data} from "../enums/data.enum";
-import {Diagnosis} from "../models/diagnosis.model";
+import {PatientEnum} from "../enums/patient.enum";
 
 @Injectable({
   providedIn: 'root',
 })
 export class MedicationService {
-  private medications: Medication[] = [
+  private medicationsPreventive: Medication[] = [
     {
       id: 1,
       name: 'EBETREXAT TBL 10MG',
@@ -75,22 +75,32 @@ export class MedicationService {
     },
   ];
 
+  private medicationsNoProblem: Medication[] = [];
+
   constructor() {}
 
-  getMedications(): Observable<Medication[]> {
-    return of(this.medications);
+  getMedications(patientType: PatientEnum): Observable<Medication[]> {
+    return patientType === PatientEnum.MedicalCheckup ? of(this.medicationsPreventive) : of(this.medicationsNoProblem);
   }
 
-  getMedicationNames(): Observable<SearchFieldData[]> {
-    return of(this.medications.map(medication => ({
-      id: medication.id,
-      name: medication.name,
-      dataType: Data.Medication
-    })));
+  getMedicationNames(patientType: PatientEnum): Observable<SearchFieldData[]> {
+    if (patientType === PatientEnum.MedicalCheckup) {
+      return of(this.medicationsPreventive.map(medication => ({
+        id: medication.id,
+        name: medication.name,
+        dataType: Data.Medication
+      })));
+    } else {
+      return of(this.medicationsNoProblem.map(medication => ({
+        id: medication.id,
+        name: medication.name,
+        dataType: Data.Medication
+      })));
+    }
   }
 
-  getMedicationById(id: number): Observable<Medication | undefined> {
-    const medication = this.medications.find(medication => medication.id === id);
+  getMedicationById(patientType: PatientEnum, id: number): Observable<Medication | undefined> {
+    const medication = patientType === PatientEnum.MedicalCheckup ? this.medicationsPreventive.find(medication => medication.id === id) : this.medicationsNoProblem.find(medication => medication.id === id);
     return of(medication);
   }
 

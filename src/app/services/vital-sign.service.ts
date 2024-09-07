@@ -3,12 +3,13 @@ import { Observable, of } from 'rxjs';
 import { VitalSign } from '../models/vital-sign.model';
 import {SearchFieldData} from "../models/search-field-data.model";
 import {Data} from "../enums/data.enum";
+import {PatientEnum} from "../enums/patient.enum";
 
 @Injectable({
   providedIn: 'root',
 })
 export class VitalSignService {
-  private vitalSigns: VitalSign[] = [
+  private vitalSignsPreventive: VitalSign[] = [
     {
       id: 1,
       name: 'Körpergröße',
@@ -99,22 +100,32 @@ export class VitalSignService {
     },
   ];
 
+  private vitalSignsNoProblem: VitalSign[] = [];
+
   constructor() {}
 
-  getVitalSigns(): Observable<VitalSign[]> {
-    return of(this.vitalSigns);
+  getVitalSigns(patientType: PatientEnum): Observable<VitalSign[]> {
+    return patientType === PatientEnum.MedicalCheckup ? of(this.vitalSignsPreventive) : of(this.vitalSignsNoProblem);
   }
 
-  getVitalSignNames(): Observable<SearchFieldData[]> {
-    return of(this.vitalSigns.map(vitalSign => ({
-      id: vitalSign.id,
-      name: vitalSign.name,
-      dataType: Data.VitalSign
-    })));
+  getVitalSignNames(patientType: PatientEnum): Observable<SearchFieldData[]> {
+    if (patientType === PatientEnum.MedicalCheckup) {
+      return of(this.vitalSignsPreventive.map(vitalSign => ({
+        id: vitalSign.id,
+        name: vitalSign.name,
+        dataType: Data.Medication
+      })));
+    } else {
+      return of(this.vitalSignsNoProblem.map(vitalSign => ({
+        id: vitalSign.id,
+        name: vitalSign.name,
+        dataType: Data.Medication
+      })));
+    }
   }
 
-  getVitalSignById(id: number): Observable<VitalSign | undefined> {
-    const vitalSign = this.vitalSigns.find(vitalSign => vitalSign.id === id);
+  getVitalSignById(patientType: PatientEnum, id: number): Observable<VitalSign | undefined> {
+    const vitalSign = patientType === PatientEnum.MedicalCheckup ? this.vitalSignsPreventive.find(vitalSign => vitalSign.id === id) : this.vitalSignsNoProblem.find(vitalSign => vitalSign.id === id);
     return of(vitalSign);
   }
 }

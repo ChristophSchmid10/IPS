@@ -5,12 +5,13 @@ import { Procedure } from '../models/procedure.model';
 import {SearchFieldData} from "../models/search-field-data.model";
 import {Data} from "../enums/data.enum";
 import {Medication} from "../models/medication.model";
+import {PatientEnum} from "../enums/patient.enum";
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProcedureService {
-  private procedures: Procedure[] = [
+  private proceduresPreventive: Procedure[] = [
     {
       id: 1,
       name: 'Total replacement of left hip joint',
@@ -31,22 +32,32 @@ export class ProcedureService {
     },
   ];
 
+  private procedureNoProblem: Procedure[] = [];
+
   constructor() {}
 
-  getProcedures(): Observable<Procedure[]> {
-    return of(this.procedures);
+  getProcedures(patientType: PatientEnum): Observable<Procedure[]> {
+    return patientType === PatientEnum.MedicalCheckup ? of(this.proceduresPreventive) : of(this.procedureNoProblem);
   }
 
-  getProcedureNames(): Observable<SearchFieldData[]> {
-    return of(this.procedures.map(procedure => ({
-      id: procedure.id,
-      name: procedure.name,
-      dataType: Data.Procedure
-    })));
+  getProcedureNames(patientType: PatientEnum): Observable<SearchFieldData[]> {
+    if (patientType === PatientEnum.MedicalCheckup) {
+      return of(this.proceduresPreventive.map(procedure => ({
+        id: procedure.id,
+        name: procedure.name,
+        dataType: Data.Medication
+      })));
+    } else {
+      return of(this.procedureNoProblem.map(procedure => ({
+        id: procedure.id,
+        name: procedure.name,
+        dataType: Data.Medication
+      })));
+    }
   }
 
-  getProcedureById(id: number): Observable<Procedure | undefined> {
-    const procedure = this.procedures.find(procedure => procedure.id === id);
+  getProcedureById(patientType: PatientEnum, id: number): Observable<Procedure | undefined> {
+    const procedure = patientType === PatientEnum.MedicalCheckup ? this.proceduresPreventive.find(procedure => procedure.id === id) : this.procedureNoProblem.find(procedure => procedure.id === id);
     return of(procedure);
   }
 
