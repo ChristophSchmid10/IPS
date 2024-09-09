@@ -1,77 +1,68 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
-import {MatFormFieldModule,} from '@angular/material/form-field';
-import {MatInputModule} from '@angular/material/input';
-import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatAutocomplete, MatAutocompleteTrigger, MatOption,} from '@angular/material/autocomplete';
-import {debounceTime} from 'rxjs';
-import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
-import {MedicationService} from "../../services/medication.service";
-import {DiagnosisService} from "../../services/diagnosis.service";
-import {LabValueService} from "../../services/lab-value.service";
-import {ProcedureService} from "../../services/procedure.service";
-import {VitalSignService} from "../../services/vital-sign.service";
-import {SearchFieldData} from "../../models/search-field-data.model";
-import {ValueDialogComponent} from "../../shared/value-dialog/value-dialog.component";
-import {Data} from "../../enums/data.enum";
-import {MatDialog} from "@angular/material/dialog";
-import {PatientEnum} from "../../enums/patient.enum";
-import {Router} from "@angular/router";
+
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import { debounceTime } from 'rxjs';
+import { MedicationService } from "../../services/medication.service";
+import { DiagnosisService } from "../../services/diagnosis.service";
+import { LabValueService } from "../../services/lab-value.service";
+import { ProcedureService } from "../../services/procedure.service";
+import { VitalSignService } from "../../services/vital-sign.service";
+import { SearchFieldData } from "../../models/search-field-data.model";
+import { ValueDialogComponent } from "../../shared/value-dialog/value-dialog.component";
+import { Data } from "../../enums/data.enum";
+import { MatDialog } from "@angular/material/dialog";
+import { PatientEnum } from "../../enums/patient.enum";
+import { Router } from "@angular/router";
+import { Overlay, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+import {GlobalSearchFieldOverlayComponent} from "../global-search-field-overlay/global-search-field-overlay.component";
 
 @Component({
   selector: 'app-global-search-field',
-  standalone: true,
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatIconModule,
-    MatAutocompleteTrigger,
-    MatAutocomplete,
-    MatOption,
-    AsyncPipe,
-    ReactiveFormsModule,
-    NgForOf,
-    NgIf,
-  ],
-
   templateUrl: './global-search-field.component.html',
-  styleUrl: './global-search-field.component.css',
+  styleUrls: ['./global-search-field.component.css'],
+  imports: [
+    ReactiveFormsModule
+  ],
+  standalone: true
 })
 export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl('');
-  options: string[] = [];
   filteredOptions: SearchFieldData[] = [];
   loadedData: SearchFieldData[] = [];
   patientType: PatientEnum = PatientEnum.MedicalCheckup;
+  overlayRef!: OverlayRef;
 
-  constructor(private medicationService: MedicationService,
-              private diagnosisService: DiagnosisService,
-              private labValueService: LabValueService,
-              private procedureService: ProcedureService,
-              private vitalSignService: VitalSignService,
-              private dialog: MatDialog,
-              private router: Router) {
-  }
+  @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
+
+  constructor(
+    private medicationService: MedicationService,
+    private diagnosisService: DiagnosisService,
+    private labValueService: LabValueService,
+    private procedureService: ProcedureService,
+    private vitalSignService: VitalSignService,
+    private dialog: MatDialog,
+    private router: Router,
+    private overlay: Overlay,
+    private viewContainerRef: ViewContainerRef
+  ) {}
 
   ngOnInit() {
-    this.router.url === '/preventive-medical-checkup' ? this.patientType = PatientEnum.MedicalCheckup : this.patientType = PatientEnum.NoProblems;
-    this.loadedData = [];
-    this.options = [];
+    this.patientType = this.router.url === '/preventive-medical-checkup' ? PatientEnum.MedicalCheckup : PatientEnum.NoProblems;
     this.loadData();
     this.searchControl.valueChanges.pipe(
       debounceTime(300)
     ).subscribe(value => {
       this.filteredOptions = this._filter(value || "");
+      if (this.filteredOptions.length > 0) {
+        this.openOverlay();
+      } else if (this.overlayRef) {
+        this.overlayRef.detach();
+      }
     });
   }
 
-  ngAfterViewInit() {
-  }
-
-
+  ngAfterViewInit() {}
 
   private _filter(value: string): SearchFieldData[] {
     const filterValue = value.toLowerCase();
@@ -81,33 +72,27 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   selectOption(option: SearchFieldData) {
     this.searchControl.setValue(option.name);
     this.filteredOptions = [];
-    this.onRowClick(option.id, option.dataType)
+    if (this.overlayRef) {
+      this.overlayRef.detach();
+    }
+    this.onRowClick(option.id, option.dataType);
   }
 
   loadData() {
     this.medicationService.getMedicationNames(this.patientType).subscribe(medicationData => {
       this.loadedData = this.loadedData.concat(medicationData);
-      this.options = this.options.concat(this.loadedData.map(data => data.name));
-
     });
     this.diagnosisService.getDiagnosesNames(this.patientType).subscribe(diagnosesData => {
       this.loadedData = this.loadedData.concat(diagnosesData);
-      this.options = this.options.concat(this.loadedData.map(data => data.name));
     });
-
     this.labValueService.getLabValueNames(this.patientType).subscribe(labValuesData => {
       this.loadedData = this.loadedData.concat(labValuesData);
-      this.options = this.options.concat(this.loadedData.map(data => data.name));
     });
-
     this.procedureService.getProcedureNames(this.patientType).subscribe(procedureData => {
       this.loadedData = this.loadedData.concat(procedureData);
-      this.options = this.options.concat(this.loadedData.map(data => data.name));
     });
-
     this.vitalSignService.getVitalSignNames(this.patientType).subscribe(vitalSignData => {
       this.loadedData = this.loadedData.concat(vitalSignData);
-      this.options = this.options.concat(this.loadedData.map(data => data.name));
     });
   }
 
@@ -139,7 +124,7 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
         });
         break;
       case Data.LabValue:
-        this.labValueService.getLabValueById(this.patientType,id).subscribe(labValue => {
+        this.labValueService.getLabValueById(this.patientType, id).subscribe(labValue => {
           dataSet = labValue;
           this.openDialog(dataType, dataSet);
         });
@@ -148,8 +133,35 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(dataType: Data, dataSet: any) {
-    const dialogRef = this.dialog.open(ValueDialogComponent, {
+    this.dialog.open(ValueDialogComponent, {
       data: [dataType, dataSet],
     });
+  }
+
+  openOverlay() {
+    if (this.overlayRef) {
+      this.overlayRef.detach();
+    }
+
+    const positionStrategy = this.overlay.position()
+      .flexibleConnectedTo(this.searchInput)
+      .withPositions([{ originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' }])
+      .withDefaultOffsetY(10);
+
+    this.overlayRef = this.overlay.create({
+      positionStrategy,
+      hasBackdrop: true,
+      backdropClass: 'cdk-overlay-transparent-backdrop'
+    });
+
+    const portal = new ComponentPortal(GlobalSearchFieldOverlayComponent, this.viewContainerRef);
+    const componentRef = this.overlayRef.attach(portal);
+    componentRef.instance.filteredOptions = this.filteredOptions;
+    componentRef.instance.optionSelected.subscribe((option: SearchFieldData) => {
+      this.selectOption(option);
+      this.overlayRef.detach();
+    });
+
+    this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach());
   }
 }

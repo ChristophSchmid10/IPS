@@ -1,3 +1,4 @@
+
 .container {
   padding: 1rem;
   gap: 1rem;
@@ -13,4 +14,11 @@
 
 .collapsed-tables > app-table {
   flex: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .collapsed-tables {
+    flex-direction: column;
+  }
 }

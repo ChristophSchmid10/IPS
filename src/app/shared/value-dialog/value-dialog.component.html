@@ -17,7 +17,7 @@
       </div>
       <div class="details">
         <p class="header">{{dataType === Data.Medication ? 'Dosierung' : dataType === Data.Diagnosis ? 'Bekannt seit' : dataType === Data.LabValue ? 'Gemessen am' : dataType === Data.Procedure ? 'Durchgeführt / Geplant am' : 'Gemessen am'}}</p>
-        <p class="value">{{dataType === Data.Medication ? dataSet?.dosage : dataType === Data.Diagnosis ? (dataSet?.startDate | date: 'dd.MM.yyyy') : dataType === Data.LabValue ? (dataSet?.measuredAt | date: 'dd.MM.yyyy'): dataType === Data.Procedure ? (dataSet?.doneAt | date: 'yyyy') : (dataSet?.measuredAt | date: 'dd.MM.yyyy')}}</p>
+        <p class="value">{{dataType === Data.Medication ? dataSet?.dosage : dataType === Data.Diagnosis ? (dataSet?.startDate | date: 'dd.MM.yyyy') : dataType === Data.LabValue ? (dataSet?.measuredAt | date: 'dd.MM.yyyy') : dataType === Data.Procedure ? (dataSet?.doneAt | date: 'yyyy') : (dataSet?.measuredAt | date: 'dd.MM.yyyy')}}</p>
       </div>
     </div>
     <div class="content">
@@ -32,8 +32,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-

@@ -1,3 +1,4 @@
+
 p {
   margin: 0;
 }
@@ -176,4 +177,29 @@ p {
   height: 24px;
   top: -3px;
   z-index: 10;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .vital-sign-card,
+  .vertical-frame {
+    padding: 8px 16px;
+  }
+  .icon-frame,
+  .background-container {
+    height: 60px;
+    width: 60px;
+  }
+  .background-container img {
+    width: 30px;
+    height: 30px;
+  }
+  .vital-sign {
+    font-size: 20px;
+  }
+  .date,
+  .value,
+  .unit {
+    font-size: 16px;
+  }
 }

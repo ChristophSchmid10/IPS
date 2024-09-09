@@ -25,7 +25,6 @@ import {MatChip} from "@angular/material/chips";
   standalone: true,
   imports: [
     AllergyWarningComponent,
-    GlobalSearchFieldComponent,
     MatIconButton,
     MatIcon,
     MatExpansionPanel,
@@ -41,6 +40,7 @@ import {MatChip} from "@angular/material/chips";
     MatTab,
     TableComponent,
     MatChip,
+    GlobalSearchFieldComponent,
   ],
   templateUrl: './patient-header.component.html',
   styleUrl: './patient-header.component.css',

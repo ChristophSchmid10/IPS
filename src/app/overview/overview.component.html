@@ -1,11 +1,9 @@
+
 <div class="container">
-
-    <app-table [collapsed]= false [dataType]="tableOrder[0]"></app-table>
-
+  <app-table [collapsed]= false [dataType]="tableOrder[0]"></app-table>
   <div class="collapsed-tables">
     <app-table (changeTableOrderEvent)="changeTableOrder(1)" [collapsed]= true [dataType]="tableOrder[1]"></app-table>
     <app-table (changeTableOrderEvent)="changeTableOrder(2)" [collapsed]= true [dataType]="tableOrder[2]"></app-table>
     <app-table (changeTableOrderEvent)="changeTableOrder(3)" [collapsed]= true [dataType]="tableOrder[3]"></app-table>
   </div>
 </div>
-

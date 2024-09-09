@@ -1,3 +1,4 @@
+
 /* Global Styles */
 p {
   margin: 0;
@@ -11,7 +12,7 @@ mat-expansion-panel {
   border-radius: 10px;
   background: white;
   height: auto;
-  overflow: visible; /* Hinzugefügt */
+  overflow: visible; /* Ensure overflow is visible */
 }
 
 mat-expansion-panel-header {
@@ -20,9 +21,9 @@ mat-expansion-panel-header {
   box-shadow: none;
   border-radius: 10px;
   height: auto !important;
-  overflow: visible; /* Hinzugefügt */
-  position: relative; /* Hinzugefügt */
-  z-index: 1; /* Hinzugefügt */
+  overflow: visible; /* Ensure overflow is visible */
+  position: relative;
+  z-index: 1;
 }
 
 /* Header Frame */
@@ -44,6 +45,7 @@ mat-expansion-panel-header {
   border-radius: 10px;
   background: #fff;
   width: auto;
+  position: relative; /* Ensure relative positioning */
 }
 
 .content-frame {
@@ -188,4 +190,23 @@ mat-expansion-panel-header {
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .content-frame {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .avatar-and-name {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .details-frame {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .detail-information {
+    min-width: 100%;
+  }
 }

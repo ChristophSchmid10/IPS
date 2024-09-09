@@ -1,10 +1,5 @@
 
 <div class="search-container">
   <img src="assets/Icons/search.svg" class="search-icon">
-  <input class="filter-input" [formControl]="searchControl" type="search" placeholder="Suchen...">
-  <ul *ngIf="filteredOptions.length > 0" class="autocomplete-list">
-    <li *ngFor="let option of filteredOptions" (click)="selectOption(option)">
-      {{ option.name }}
-    </li>
-  </ul>
+  <input #searchInput class="filter-input" [formControl]="searchControl" type="search" placeholder="Suchen..." (focus)="openOverlay()">
 </div>

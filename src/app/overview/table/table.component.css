@@ -1,8 +1,9 @@
+
 .table-frame {
   border-radius: 15px;
-  border: 1px solid #b3b3b3; /* Complete border property */
+  border: 1px solid #b3b3b3;
   background: #fff;
-  overflow: hidden; /* Ensure border radius is visible */
+  overflow: hidden;
   padding: 16px;
 }
 
@@ -46,7 +47,9 @@
 
 .table-wrapper {
   overflow-y: auto;
+  max-height: 100%;
 }
+
 .table-wrapper table tbody tr {
   cursor: pointer;
   transition: background-color 0.3s;
@@ -58,16 +61,17 @@
 
 table {
   width: 100%;
-  border-collapse: separate; /* Ensure borders don't collapse */
-  border-spacing: 0; /* Remove any additional spacing */
+  border-collapse: separate;
+  border-spacing: 0;
+  position: relative;
 }
 
 thead.sticky-header {
+  background-color: #37d;
+  z-index: 2;
+  color: white;
   position: sticky;
   top: 0;
-  background-color: #37d; /* Set the background color to prevent overlapping content */
-  z-index: 1; /* Ensure the header stays on top */
-  color: white; /* Text color */
 }
 
 thead.sticky-header th {
@@ -88,7 +92,7 @@ thead.sticky-header th:last-child {
 
 tbody td {
   padding-left: 12px;
-  border-bottom: 1px solid #ddd; /* Add bottom border to each cell */
+  border-bottom: 1px solid #ddd;
 }
 
 tbody tr {
@@ -96,7 +100,7 @@ tbody tr {
 }
 
 tbody tr:last-child td {
-  border-bottom: none; /* Remove bottom border for the last row */
+  border-bottom: none;
 }
 
 .search-container {
@@ -106,15 +110,15 @@ tbody tr:last-child td {
 
 .filter-input {
   width: 100%;
-  padding: 10px 20px 10px 40px; /* Platz für das Icon */
-  border-radius: 25px; /* Runder Rahmen */
+  padding: 10px 20px 10px 40px;
+  border-radius: 25px;
   border: 2px solid #ccc;
   font-size: 16px;
   transition: border-color 0.3s;
 }
 
 .filter-input:focus {
-  border-color: #007BFF; /* Farbe ändern bei Fokus */
+  border-color: #007BFF;
   outline: none;
 }
 
@@ -140,44 +144,69 @@ tbody tr:last-child td {
 
 mat-chip {
   background: #E7FFF1;
+}
 
-  span {
-    font-family: Mulish;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-  }
+mat-chip span {
+  font-family: Mulish;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
 }
 
 mat-chip.Aktiv {
   background: #E7FFF1;
+}
 
-  span {
-    color: #508969;
-  }
+mat-chip.Aktiv span {
+  color: #508969;
 }
 
 mat-chip.Abgeschlossen {
   background: #C9C9C9;
+}
 
-  span {
-    color: #4D4D4D;
-  }
+mat-chip.Abgeschlossen span {
+  color: #4D4D4D;
 }
 
 mat-chip.Nicht {
   background: #C9C9C9;
+}
 
-  span {
-    color: #4D4D4D;
-  }
+mat-chip.Nicht span {
+  color: #4D4D4D;
 }
 
 mat-chip.Familiär {
   background: #FFCE84;
+}
 
-  span {
-    color: #B45600;
+mat-chip.Familiär span {
+  color: #B45600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .table-container {
+    max-height: 200px;
+  }
+
+  thead.sticky-header th {
+    font-size: 14px;
+    position: sticky;
+    top: 0;
+  }
+
+  tbody td {
+    font-size: 12px;
+  }
+
+  .search-container {
+    width: 100%;
+  }
+
+  .filter-input {
+    width: 100%;
   }
 }

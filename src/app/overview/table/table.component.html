@@ -1,3 +1,4 @@
+
 <div class="table-frame" *ngIf="!collapsed; else collapsedView">
   <div class="table-view-header">
     <div class="icon-and-label">
@@ -18,22 +19,26 @@
         </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let dataSet of filteredData" (click)="onRowClick(dataSet, dataType)">
-            <td>{{dataSet?.name}}</td>
-            <td *ngIf="dataType == Data.Medication || dataType == Data.Procedure || dataType == Data.Diagnosis"><mat-chip [ngClass]="dataSet?.status"><span>{{dataSet?.status}}</span></mat-chip></td>
-            <td *ngIf="dataType == Data.Medication">{{dataSet?.dosage}}</td>
-            <td *ngIf="dataType == Data.Medication">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
-            <td *ngIf="dataType == Data.Medication">{{dataSet?.endDate | date: 'dd.MM.yyyy'}}</td>
-            <td *ngIf="dataType == Data.Diagnosis">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
-            <td *ngIf="dataType == Data.Procedure">{{dataSet?.doneAt | date: 'dd.MM.yyyy'}}</td>
-            <td *ngIf="dataType == Data.LabValue && isStatus(dataSet?.value)"><mat-chip [ngClass]="dataSet?.value"><span>{{dataSet?.value}}</span></mat-chip></td>
-            <td *ngIf="dataType == Data.LabValue && !isStatus(dataSet?.value)">{{dataSet?.value}}</td>
-            <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredAt | date: 'dd.MM.yyyy'}}</td>
-            <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredFrom}}</td>
-          </tr>
-          <tr *ngIf="patientType === PatientEnum.NoProblems" class="no-data">
-            <td colspan="12"><p>Keine {{dataType.toString()}} gefunden</p></td>
-          </tr>
+        <tr *ngFor="let dataSet of filteredData" (click)="onRowClick(dataSet, dataType)">
+          <td>{{dataSet?.name}}</td>
+          <td *ngIf="dataType == Data.Medication || dataType == Data.Procedure || dataType == Data.Diagnosis">
+            <mat-chip [ngClass]="dataSet?.status"><span>{{dataSet?.status}}</span></mat-chip>
+          </td>
+          <td *ngIf="dataType == Data.Medication">{{dataSet?.dosage}}</td>
+          <td *ngIf="dataType == Data.Medication">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.Medication">{{dataSet?.endDate | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.Diagnosis">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.Procedure">{{dataSet?.doneAt | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.LabValue && isStatus(dataSet?.value)">
+            <mat-chip [ngClass]="dataSet?.value"><span>{{dataSet?.value}}</span></mat-chip>
+          </td>
+          <td *ngIf="dataType == Data.LabValue && !isStatus(dataSet?.value)">{{dataSet?.value}}</td>
+          <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredAt | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredFrom}}</td>
+        </tr>
+        <tr *ngIf="patientType === PatientEnum.NoProblems" class="no-data">
+          <td colspan="12"><p>Keine {{dataType.toString()}} gefunden</p></td>
+        </tr>
         </tbody>
       </table>
     </div>
