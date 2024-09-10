@@ -45,13 +45,13 @@ export class ProcedureService {
       return of(this.proceduresPreventive.map(procedure => ({
         id: procedure.id,
         name: procedure.name,
-        dataType: Data.Medication
+        dataType: Data.Procedure
       })));
     } else {
       return of(this.procedureNoProblem.map(procedure => ({
         id: procedure.id,
         name: procedure.name,
-        dataType: Data.Medication
+        dataType: Data.Procedure
       })));
     }
   }

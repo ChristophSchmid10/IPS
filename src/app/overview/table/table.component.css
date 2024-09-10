@@ -1,4 +1,12 @@
 
+.sort-icon {
+  display: inline-block;
+  width: 1em; /* Reservieren Sie Platz für das Sortiersymbol */
+  text-align: center; /* Zentrieren Sie das Symbol */
+}
+
+
+
 .table-frame {
   border-radius: 15px;
   border: 1px solid #b3b3b3;
@@ -78,6 +86,7 @@ thead.sticky-header th {
   padding-left: 12px;
   text-align: start;
   height: 40px;
+  cursor: pointer;
 }
 
 thead.sticky-header th:first-child {

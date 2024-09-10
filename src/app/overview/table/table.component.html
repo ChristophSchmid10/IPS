@@ -15,7 +15,17 @@
       <table>
         <thead class="sticky-header">
         <tr>
-          <th *ngFor="let headerLabel of headerLabels; let i = index">{{headerLabel}}</th>
+          <th *ngFor="let header of headerLabels" (click)="onHeaderClick(header)">
+            {{header.label}}
+            <span class="sort-icon">
+              <span *ngIf="sortColumn === header.field">
+                {{ sortDirection === 'asc' ? '▲' : '▼' }}
+              </span>
+              <span *ngIf="sortColumn !== header.field">
+                &nbsp; <!-- Reserviert Platz für das Sortiersymbol -->
+              </span>
+            </span>
+          </th>
         </tr>
         </thead>
         <tbody>
@@ -61,7 +71,16 @@
         <table>
           <thead class="sticky-header">
           <tr>
-            <th>{{headerLabels[0]}}</th>
+            <th (click)="onHeaderClick(headerLabels[0])">{{headerLabels[0].label}}
+            <span class="sort-icon">
+              <span *ngIf="sortColumn === headerLabels[0].field">
+                {{ sortDirection === 'asc' ? '▲' : '▼' }}
+              </span>
+              <span *ngIf="sortColumn !== headerLabels[0].field">
+                &nbsp; <!-- Reserviert Platz für das Sortiersymbol -->
+              </span>
+            </span>
+            </th>
           </tr>
           </thead>
           <p class="no-data" *ngIf="patientType === PatientEnum.NoProblems">Keine {{dataType.toString()}} gefunden</p>

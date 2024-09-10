@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
-import { Status } from '../enums/status.enum';
-import { LabValue } from '../models/lab-value.model';
+import {Injectable} from '@angular/core';
+import {Observable, of} from 'rxjs';
+import {Status} from '../enums/status.enum';
+import {LabValue} from '../models/lab-value.model';
 import {SearchFieldData} from "../models/search-field-data.model";
 import {Data} from "../enums/data.enum";
 import {PatientEnum} from "../enums/patient.enum";
@@ -116,13 +116,13 @@ export class LabValueService {
       return of(this.labValuesPreventive.map(labValue => ({
         id: labValue.id,
         name: labValue.name,
-        dataType: Data.Medication
+        dataType: Data.LabValue
       })));
     } else {
       return of(this.labValuesNoProblem.map(labValue => ({
         id: labValue.id,
         name: labValue.name,
-        dataType: Data.Medication
+        dataType: Data.LabValue
       })));
     }
   }

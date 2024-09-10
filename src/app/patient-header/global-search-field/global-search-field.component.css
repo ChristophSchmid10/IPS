@@ -1,20 +1,23 @@
 
+* {
+  box-sizing: border-box; /* Ensure all elements use border-box sizing */
+}
+
 .search-container {
   position: relative;
   display: inline-block;
-  width: 100%;
   z-index: 1000; /* Ensure a high z-index for the container */
-  max-width: 400px;
   width: 400px;
 }
 
 .filter-input {
   width: 100%;
-  padding: 10px 20px 10px 40px;
+  padding: 10px 40px 10px 40px; /* Adjust the padding to make room for the search icon and clear icon */
   border-radius: 25px;
   border: 2px solid #ccc;
   font-size: 16px;
   transition: border-color 0.3s;
+  box-sizing: border-box; /* Ensure the input uses border-box sizing */
 }
 
 .filter-input:focus {
@@ -29,4 +32,18 @@
   transform: translateY(-50%);
   font-size: 20px;
   color: #aaa;
+}
+
+.clear-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: #888;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }

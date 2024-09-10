@@ -118,13 +118,13 @@ export class DiagnosisService {
       return of(this.diagnosesPreventive.map(diagnosis => ({
         id: diagnosis.id,
         name: diagnosis.name,
-        dataType: Data.Medication
+        dataType: Data.Diagnosis
       })));
     } else {
       return of(this.diagnosesNoProblem.map(diagnosis => ({
         id: diagnosis.id,
         name: diagnosis.name,
-        dataType: Data.Medication
+        dataType: Data.Diagnosis
       })));
     }
   }

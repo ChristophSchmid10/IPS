@@ -113,13 +113,13 @@ export class VitalSignService {
       return of(this.vitalSignsPreventive.map(vitalSign => ({
         id: vitalSign.id,
         name: vitalSign.name,
-        dataType: Data.Medication
+        dataType: Data.VitalSign
       })));
     } else {
       return of(this.vitalSignsNoProblem.map(vitalSign => ({
         id: vitalSign.id,
         name: vitalSign.name,
-        dataType: Data.Medication
+        dataType: Data.VitalSign
       })));
     }
   }

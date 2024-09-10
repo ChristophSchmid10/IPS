@@ -6,7 +6,7 @@ import {NgForOf} from "@angular/common";
 @Component({
   selector: 'app-global-search-field-overlay',
   templateUrl: `global-search-field-overlay.component.html`,
-  styleUrl: 'global-search-field-overlay.component.css',
+  styleUrls: ['global-search-field-overlay.component.css'],
   standalone: true,
   imports: [
     NgForOf

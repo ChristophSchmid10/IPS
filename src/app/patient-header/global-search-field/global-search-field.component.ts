@@ -16,18 +16,21 @@ import { Router } from "@angular/router";
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import {GlobalSearchFieldOverlayComponent} from "../global-search-field-overlay/global-search-field-overlay.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-global-search-field',
   templateUrl: './global-search-field.component.html',
   styleUrls: ['./global-search-field.component.css'],
   imports: [
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgIf
   ],
   standalone: true
 })
 export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   searchControl = new FormControl('');
+  options: string[] = [];
   filteredOptions: SearchFieldData[] = [];
   loadedData: SearchFieldData[] = [];
   patientType: PatientEnum = PatientEnum.MedicalCheckup;
@@ -45,7 +48,8 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
     private router: Router,
     private overlay: Overlay,
     private viewContainerRef: ViewContainerRef
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.patientType = this.router.url === '/preventive-medical-checkup' ? PatientEnum.MedicalCheckup : PatientEnum.NoProblems;
@@ -62,7 +66,8 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+  }
 
   private _filter(value: string): SearchFieldData[] {
     const filterValue = value.toLowerCase();
@@ -70,10 +75,11 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   }
 
   selectOption(option: SearchFieldData) {
-    this.searchControl.setValue(option.name);
+    this.searchControl.setValue(option.name, {emitEvent: false}); // Update the search field value without emitting valueChanges event
     this.filteredOptions = [];
     if (this.overlayRef) {
       this.overlayRef.detach();
+      this.overlayRef.dispose();
     }
     this.onRowClick(option.id, option.dataType);
   }
@@ -133,19 +139,24 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   }
 
   openDialog(dataType: Data, dataSet: any) {
-    this.dialog.open(ValueDialogComponent, {
+    const dialogRef = this.dialog.open(ValueDialogComponent, {
       data: [dataType, dataSet],
     });
   }
 
+
   openOverlay() {
+    if (this.searchControl.value === '') {
+      return; // Do not open the overlay if the search field is empty
+    }
+
     if (this.overlayRef) {
       this.overlayRef.detach();
     }
 
     const positionStrategy = this.overlay.position()
       .flexibleConnectedTo(this.searchInput)
-      .withPositions([{ originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top' }])
+      .withPositions([{originX: 'start', originY: 'bottom', overlayX: 'start', overlayY: 'top'}])
       .withDefaultOffsetY(10);
 
     this.overlayRef = this.overlay.create({
@@ -164,4 +175,16 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
 
     this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach());
   }
+
+  clearSearch() {
+    this.searchControl.setValue('');
+    this.filteredOptions = [];
+    if (this.overlayRef) {
+      this.overlayRef.detach();
+      this.overlayRef.dispose(); // Dispose the overlay to ensure it is completely removed
+    }
+  }
+
+
+
 }
