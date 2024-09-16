@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {MatTab, MatTabGroup} from "@angular/material/tabs";
 import {OverviewComponent} from "../overview/overview.component";
 import {PatientHeaderComponent} from "../patient-header/patient-header.component";
@@ -17,7 +17,8 @@ import {GlobalSearchFieldComponent} from "../patient-header/global-search-field/
     GlobalSearchFieldComponent
   ],
   templateUrl: './preventive-medical-checkup.component.html',
-  styleUrl: './preventive-medical-checkup.component.css'
+  styleUrl: './preventive-medical-checkup.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class PreventiveMedicalCheckupComponent {
 

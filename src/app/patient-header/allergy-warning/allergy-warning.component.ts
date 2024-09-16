@@ -12,4 +12,11 @@ import {PatientEnum} from "../../enums/patient.enum";
 export class AllergyWarningComponent {
   @Input() patientType: PatientEnum | undefined
   protected readonly PatientEnum = PatientEnum;
+  public collapsed = true;
+
+  public collapsBanner() {
+    this.collapsed = !this.collapsed;
+  }
 }
+
+

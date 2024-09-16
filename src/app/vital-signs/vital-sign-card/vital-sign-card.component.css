@@ -6,11 +6,13 @@ p {
 .vital-sign-card,
 .vertical-frame {
   display: flex;
-  width: 100%;
+  flex: 1;
+  min-width: 300px;
+  max-width: 400px;
   padding: 16px 32px;
   flex-direction: column;
   align-items: flex-start;
-  gap: 16px;
+  gap: 32px;
   border-radius: 10px;
   border: 1px solid #b3b3b3;
   background: #fff;
@@ -34,23 +36,25 @@ p {
 .icon-frame {
   display: flex;
   align-items: center;
-  gap: 36px;
+  gap: 16px;
   align-self: stretch;
+  flex-wrap: nowrap; /* Verhindert Umbruch */
 }
 
 .background-container {
   background: #37d;
   border-radius: 50%;
-  height: 90px;
-  width: 90px;
+  height: 70px;
+  width: 70px;
   align-items: center;
   display: flex;
   justify-content: center;
+  flex-shrink: 0; /* Verhindert das Schrumpfen des Containers */
 }
 
 .background-container img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .vital-sign-and-date {
@@ -58,6 +62,8 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  flex-grow: 1; /* Erlaubt das Wachstum, um verfügbaren Platz zu nutzen */
+  min-width: 0; /* Erlaubt korrektes Schrumpfen des flex-items */
 }
 
 .vital-sign {
@@ -66,6 +72,11 @@ p {
   font-family: Mulish;
   font-size: 25px;
   font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%; /* Begrenzung auf die Breite des Elternteils */
+  display: block;
 }
 
 .date {
@@ -180,26 +191,8 @@ p {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-  .vital-sign-card,
-  .vertical-frame {
-    padding: 8px 16px;
-  }
-  .icon-frame,
-  .background-container {
-    height: 60px;
-    width: 60px;
-  }
-  .background-container img {
-    width: 30px;
-    height: 30px;
-  }
-  .vital-sign {
-    font-size: 20px;
-  }
-  .date,
-  .value,
-  .unit {
-    font-size: 16px;
+@media (max-width: 560px) {
+  .vital-sign-card {
+    min-width: 250px;
   }
 }

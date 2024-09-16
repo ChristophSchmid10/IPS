@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-
 html,
 body {
   height: 100%;
@@ -7,4 +6,75 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.font-size-big {
+  font-size: 30px !important;
+
+  @media (max-width:960px) {
+    font-size: 25px !important;
+  }
+}
+
+.font-size-middle {
+  font-size: 20px !important;
+
+  @media (max-width:960px) {
+    font-size: 15px !important;
+  }
+}
+
+.font-size-small {
+  font-size: 15px !important;
+
+  @media (max-width:960px) {
+    font-size: 12px !important;
+  }
+
+}
+
+.font-size-table-header {
+  font-size: 25px !important;
+
+  @media (max-width:960px) {
+    font-size: 20px !important;
+  }
+}
+
+
+
+
+
+@media (min-width: 993px) {
+  .show-under-992 {
+    display: none !important;
+  }
+}
+
+@media (max-width: 992px) {
+  .show-under-992 {
+    display: flex !important;
+  }
+
+  .hide-under-992 {
+    display: none !important;
+  }
+}
+
+
+
+@media (min-width: 769px) {
+  .show-under-768 {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .show-under-768 {
+    display: flex !important;
+  }
+
+  .hide-under-768 {
+    display: none !important;
+  }
 }

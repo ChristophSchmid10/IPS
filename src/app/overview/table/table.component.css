@@ -5,7 +5,14 @@
   text-align: center; /* Zentrieren Sie das Symbol */
 }
 
-
+.filter-chips-container {
+  mat-chip {
+    mat-icon {
+      height: unset;
+      width: unset;
+    }
+  }
+}
 
 .table-frame {
   border-radius: 15px;
@@ -26,12 +33,12 @@
 .table-view-header .icon-and-label {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 10px;
 }
 
 .table-view-header .icon-and-label img {
-  width: 50px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
 }
 
 .table-view-header .icon-and-label p {
@@ -39,7 +46,7 @@
   margin: 0;
   text-align: center;
   font-family: Mulish;
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 600;
 }
 
@@ -87,6 +94,7 @@ thead.sticky-header th {
   text-align: start;
   height: 40px;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 thead.sticky-header th:first-child {
@@ -153,6 +161,9 @@ tbody tr:last-child td {
 
 mat-chip {
   background: #E7FFF1;
+  height: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
 }
 
 mat-chip span {
@@ -161,6 +172,10 @@ mat-chip span {
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+mat-chip:hover {
+  background: #c7e6d1;
 }
 
 mat-chip.Aktiv {
@@ -195,27 +210,50 @@ mat-chip.Familiär span {
   color: #B45600;
 }
 
+/* Häkchen-Symbol in den Chips */
+mat-chip mat-icon {
+  font-size: 16px;
+  vertical-align: middle;
+  margin-left: 8px;
+  color: green;
+}
+
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 960px) {
   .table-container {
     max-height: 200px;
   }
 
   thead.sticky-header th {
     font-size: 14px;
-    position: sticky;
-    top: 0;
   }
 
   tbody td {
     font-size: 12px;
   }
+}
 
-  .search-container {
-    width: 100%;
+@media (max-width: 600px) {
+  thead.sticky-header th {
+    height: 30px;
   }
 
-  .filter-input {
-    width: 100%;
+  tbody tr {
+    height: 30px;
   }
+}
+
+.search-filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filter-chips-container {
+  border: 1px solid #b3b3b3;
+  border-radius: 21px;
+  padding: 8px 10px;
+  gap: 10px;
+  align-items: center;
+  display: flex;
 }

@@ -1,6 +1,6 @@
 
 <div class="search-container">
   <img src="assets/Icons/search.svg" class="search-icon">
-  <input #searchInput class="filter-input" [formControl]="searchControl" type="text" placeholder="Suchen..." (focus)="openOverlay()">
+  <input #searchInput class="filter-input" [formControl]="searchControl" type="text" placeholder="Suchen" (focus)="openOverlay()">
   <span *ngIf="searchControl.value" class="clear-icon" (click)="clearSearch()">&#10005;</span>
 </div>

@@ -14,7 +14,7 @@ import {Router} from "@angular/router";
 })
 export class VitalSignsComponent implements OnInit {
   vitalSigns: VitalSign[] = [];
-  private patientType: PatientEnum = PatientEnum.MedicalCheckup;
+  protected patientType: PatientEnum = PatientEnum.MedicalCheckup;
   constructor(private vitalSignService: VitalSignService,
               private router: Router) {}
 
@@ -31,4 +31,6 @@ export class VitalSignsComponent implements OnInit {
     );
     return filteredVitalSign ? filteredVitalSign : undefined;
   }
+
+  protected readonly PatientEnum = PatientEnum;
 }

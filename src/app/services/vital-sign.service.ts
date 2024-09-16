@@ -100,7 +100,97 @@ export class VitalSignService {
     },
   ];
 
-  private vitalSignsNoProblem: VitalSign[] = [];
+  private vitalSignsNoProblem: VitalSign[] = [
+    {
+      id: 1,
+      name: 'Körpergröße',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 2,
+      name: 'Körpergewicht',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 3,
+      name: 'Body-Mass-Index',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 4,
+      name: 'Kopfumfang',
+      value: null,
+      unit: null,
+      measuredAt: null,
+      delta: null,
+    },
+    {
+      id: 5,
+      name: 'Brustumfang',
+      value: null,
+      unit: null,
+      measuredAt: null,
+      delta: null,
+    },
+    {
+      id: 6,
+      name: 'Hüftumfang',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 7,
+      name: 'Herzfrequenz',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 8,
+      name: 'Blutdruck',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 9,
+      name: 'Blutzucker',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 10,
+      name: 'Raucherstatus',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+    {
+      id: 11,
+      name: 'Aktivität',
+      value: null,
+      unit: null,
+      delta: null,
+      measuredAt: null,
+    },
+  ];
+
 
   constructor() {}
 

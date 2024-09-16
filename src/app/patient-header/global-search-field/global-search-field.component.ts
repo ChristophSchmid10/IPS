@@ -1,20 +1,19 @@
-
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
 import {FormControl, ReactiveFormsModule} from '@angular/forms';
-import { debounceTime } from 'rxjs';
-import { MedicationService } from "../../services/medication.service";
-import { DiagnosisService } from "../../services/diagnosis.service";
-import { LabValueService } from "../../services/lab-value.service";
-import { ProcedureService } from "../../services/procedure.service";
-import { VitalSignService } from "../../services/vital-sign.service";
-import { SearchFieldData } from "../../models/search-field-data.model";
-import { ValueDialogComponent } from "../../shared/value-dialog/value-dialog.component";
-import { Data } from "../../enums/data.enum";
-import { MatDialog } from "@angular/material/dialog";
-import { PatientEnum } from "../../enums/patient.enum";
-import { Router } from "@angular/router";
-import { Overlay, OverlayRef } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
+import {debounceTime} from 'rxjs';
+import {MedicationService} from "../../services/medication.service";
+import {DiagnosisService} from "../../services/diagnosis.service";
+import {LabValueService} from "../../services/lab-value.service";
+import {ProcedureService} from "../../services/procedure.service";
+import {VitalSignService} from "../../services/vital-sign.service";
+import {SearchFieldData} from "../../models/search-field-data.model";
+import {ValueDialogComponent} from "../../shared/value-dialog/value-dialog.component";
+import {Data} from "../../enums/data.enum";
+import {MatDialog} from "@angular/material/dialog";
+import {PatientEnum} from "../../enums/patient.enum";
+import {Router} from "@angular/router";
+import {Overlay, OverlayRef} from '@angular/cdk/overlay';
+import {ComponentPortal} from '@angular/cdk/portal';
 import {GlobalSearchFieldOverlayComponent} from "../global-search-field-overlay/global-search-field-overlay.component";
 import {NgIf} from "@angular/common";
 
@@ -98,7 +97,7 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
       this.loadedData = this.loadedData.concat(procedureData);
     });
     this.vitalSignService.getVitalSignNames(this.patientType).subscribe(vitalSignData => {
-      this.loadedData = this.loadedData.concat(vitalSignData);
+      this.patientType === PatientEnum.MedicalCheckup ? this.loadedData = this.loadedData.concat(vitalSignData): '';
     });
   }
 
@@ -141,6 +140,7 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   openDialog(dataType: Data, dataSet: any) {
     const dialogRef = this.dialog.open(ValueDialogComponent, {
       data: [dataType, dataSet],
+      width: '90%'
     });
   }
 

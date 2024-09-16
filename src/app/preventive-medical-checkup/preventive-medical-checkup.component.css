@@ -19,7 +19,6 @@ mat-tab {
   width: calc(100% + 2rem);
   margin-left: -1rem;
   margin-top: 1rem;
-  background: white;
 }
 
 .mat-mdc-dialog-surface {
@@ -35,4 +34,32 @@ mat-tab {
   mat-tab-group {
     mat-align-tabs: "center";
   }
+}
+
+.mdc-tab__text-label {
+  color: #37d !important;;
+}
+
+
+.mdc-tab-indicator--active {
+  background: white !important;
+  border-radius: 4px !important;
+  border-top: 1px solid #B2B2B2 !important;
+  border-right: 1px solid #B2B2B2 !important;
+  border-left: 1px solid #B2B2B2 !important;
+  border-bottom: none !important;
+
+  .mdc-tab__ripple {
+    ::before {
+      background: none !important;
+    }
+  }
+
+  .mdc-tab__text-label {
+    color: black !important;
+  }
+}
+
+.mat-mdc-tab .mdc-tab-indicator__content--underline {
+  border-color: white !important;
 }

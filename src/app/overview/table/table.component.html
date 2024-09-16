@@ -3,11 +3,19 @@
   <div class="table-view-header">
     <div class="icon-and-label">
       <img [src]="getImage()">
-      <p>{{dataType.toString()}}</p>
+      <p class="font-size-big">{{dataType.toString()}}</p>
     </div>
-    <div class="search-container">
-      <img src="assets/Icons/search.svg" class="search-icon">
-      <input type="text" (input)="applyFilter($event)" [placeholder]="dataType.toString() + ' suchen'" class="filter-input">
+    <div class="search-filter">
+      <div *ngIf="dataType == Data.Diagnosis && (layout === 'lg' || layout === 'xl' || layout === 'md')" class="filter-chips-container">
+        <mat-chip [ngClass]="status" *ngFor="let status of getDifferentMedicationStatus()" (click)="toggleFilter(status)">
+          <span class="font-size-small">{{status}}</span>
+          <mat-icon *ngIf="activeFilters.includes(status)">check</mat-icon>
+        </mat-chip>
+      </div>
+      <div class="search-container">
+        <img src="assets/Icons/search.svg" class="search-icon">
+        <input type="text" (input)="applyFilter($event)" [placeholder]="dataType.toString() + ' suchen'" class="filter-input">
+      </div>
     </div>
   </div>
   <div class="table-container">
@@ -32,7 +40,7 @@
         <tr *ngFor="let dataSet of filteredData" (click)="onRowClick(dataSet, dataType)">
           <td>{{dataSet?.name}}</td>
           <td *ngIf="dataType == Data.Medication || dataType == Data.Procedure || dataType == Data.Diagnosis">
-            <mat-chip [ngClass]="dataSet?.status"><span>{{dataSet?.status}}</span></mat-chip>
+            <mat-chip [ngClass]="dataSet?.status"><span class="font-size-small">{{dataSet?.status}}</span></mat-chip>
           </td>
           <td *ngIf="dataType == Data.Medication">{{dataSet?.dosage}}</td>
           <td *ngIf="dataType == Data.Medication">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
@@ -47,7 +55,7 @@
           <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredFrom}}</td>
         </tr>
         <tr *ngIf="patientType === PatientEnum.NoProblems" class="no-data">
-          <td colspan="12"><p>Keine {{dataType.toString()}} gefunden</p></td>
+          <td class="font-size-big" colspan="12"><p>Keine {{dataType.toString()}} gefunden</p></td>
         </tr>
         </tbody>
       </table>
@@ -60,9 +68,9 @@
     <div class="table-view-header">
       <div class="icon-and-label">
         <img [src]="getImage()">
-        <p>{{dataType.toString()}}</p>
+        <p class="font-size-table-header">{{dataType.toString()}}</p>
       </div>
-      <button mat-icon-button (click)="changeTableOrder()">
+      <button *ngIf="layout !== 'xs'" mat-icon-button (click)="changeTableOrder()">
         <img src="assets/Icons/Maximize.svg">
       </button>
     </div>
@@ -72,7 +80,7 @@
           <thead class="sticky-header">
           <tr>
             <th (click)="onHeaderClick(headerLabels[0])">{{headerLabels[0].label}}
-            <span class="sort-icon">
+              <span class="sort-icon">
               <span *ngIf="sortColumn === headerLabels[0].field">
                 {{ sortDirection === 'asc' ? '▲' : '▼' }}
               </span>
@@ -83,7 +91,7 @@
             </th>
           </tr>
           </thead>
-          <p class="no-data" *ngIf="patientType === PatientEnum.NoProblems">Keine {{dataType.toString()}} gefunden</p>
+          <p class="no-data font-size-big" *ngIf="patientType === PatientEnum.NoProblems">Keine {{dataType.toString()}} gefunden</p>
           <tbody *ngIf="patientType === PatientEnum.MedicalCheckup">
           <tr *ngFor="let dataSet of filteredData" (click)="onRowClick(dataSet, dataType)">
             <td>{{dataSet?.name}}</td>

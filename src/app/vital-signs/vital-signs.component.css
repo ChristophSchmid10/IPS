@@ -5,6 +5,8 @@
   align-items: flex-start;
   gap: 32px;
   align-self: stretch;
+  background: white;
+  flex-wrap: wrap;
 }
 
 .body-measures,
@@ -18,6 +20,7 @@
   align-items: flex-start;
   gap: 16px;
   background: #fff;
+  flex: 1;
 }
 
 .body-measures p {
@@ -43,7 +46,6 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
-  width: 50%;
 }
 
 .bmi-container {
@@ -138,3 +140,15 @@ app-vital-sign-card {
     flex-direction: column;
   }
 }
+
+@media (max-width: 768px) {
+  .height-weight {
+    width: 100%;
+  }
+
+  .body-measures {
+    width: 100%;
+  }
+
+}
+

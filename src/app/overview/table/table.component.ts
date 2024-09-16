@@ -1,26 +1,28 @@
 
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { MedicationService } from '../../services/medication.service';
-import { Medication } from '../../models/medication.model';
-import { DatePipe, NgClass, NgForOf, NgIf } from '@angular/common';
-import { Data } from '../../enums/data.enum';
-import { DiagnosisService } from '../../services/diagnosis.service';
-import { Diagnosis } from '../../models/diagnosis.model';
-import { LabValueService } from '../../services/lab-value.service';
-import { ProcedureService } from '../../services/procedure.service';
-import { MatIconButton } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
-import { ValueDialogComponent } from '../../shared/value-dialog/value-dialog.component';
-import { Router } from '@angular/router';
-import { PatientEnum } from '../../enums/patient.enum';
-import { MatChip } from '@angular/material/chips';
-import { Status } from '../../enums/status.enum';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {MedicationService} from '../../services/medication.service';
+import {Medication} from '../../models/medication.model';
+import {AsyncPipe, DatePipe, NgClass, NgForOf, NgIf} from '@angular/common';
+import {Data} from '../../enums/data.enum';
+import {DiagnosisService} from '../../services/diagnosis.service';
+import {Diagnosis} from '../../models/diagnosis.model';
+import {LabValueService} from '../../services/lab-value.service';
+import {ProcedureService} from '../../services/procedure.service';
+import {MatIconButton} from '@angular/material/button';
+import {MatDialog} from '@angular/material/dialog';
+import {ValueDialogComponent} from '../../shared/value-dialog/value-dialog.component';
+import {Router} from '@angular/router';
+import {PatientEnum} from '../../enums/patient.enum';
+import {MatChip} from '@angular/material/chips';
+import {Status} from '../../enums/status.enum';
+import {BreakpointService} from "../../services/breakpoint.service";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   standalone: true,
-  imports: [DatePipe, NgForOf, NgIf, MatIconButton, MatChip, NgClass],
+  imports: [DatePipe, NgForOf, NgIf, MatIconButton, MatChip, NgClass, AsyncPipe, MatIcon],
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit, OnChanges {
@@ -32,6 +34,8 @@ export class TableComponent implements OnInit, OnChanges {
   headerLabels: { label: string, field: string }[] = [];
   patientType: PatientEnum = PatientEnum.MedicalCheckup;
   dataLoaded = false;
+  layout: string = 'xl';
+  activeFilters: Status[] = [];
 
   // Sortierlogik
   sortColumn: string = '';
@@ -43,11 +47,16 @@ export class TableComponent implements OnInit, OnChanges {
     private labValueService: LabValueService,
     private procedureServices: ProcedureService,
     private dialog: MatDialog,
-    private router: Router
+    private router: Router,
+    private breakPointService: BreakpointService
   ) {}
 
   ngOnInit() {
     this.router.url === '/preventive-medical-checkup' ? this.patientType = PatientEnum.MedicalCheckup : this.patientType = PatientEnum.NoProblems;
+    this.breakPointService.layout$.subscribe(layout => {
+      this.layout = layout;
+      console.log(this.layout);
+    });
     switch (this.dataType) {
       case Data.Medication:
         this.headerLabels = [
@@ -63,6 +72,7 @@ export class TableComponent implements OnInit, OnChanges {
           .subscribe((data: Medication[]) => {
             this.dataToShow = data;
             this.dataLoaded = true;
+            this.activeFilters = this.getDifferentMedicationStatus();
           });
         break;
       case Data.Diagnosis:
@@ -73,6 +83,7 @@ export class TableComponent implements OnInit, OnChanges {
         ];
         this.diagnosisService.getDiagnoses(this.patientType).subscribe((data: Diagnosis[]) => {
           this.dataToShow = data;
+          this.activeFilters = this.getDifferentMedicationStatus();
         });
         break;
       case Data.LabValue:
@@ -84,6 +95,7 @@ export class TableComponent implements OnInit, OnChanges {
         ];
         this.labValueService.getLabValues(this.patientType).subscribe((data: Diagnosis[]) => {
           this.dataToShow = data;
+          this.activeFilters = this.getDifferentMedicationStatus();
         });
         break;
       case Data.Procedure:
@@ -96,6 +108,7 @@ export class TableComponent implements OnInit, OnChanges {
           .getProcedures(this.patientType)
           .subscribe((data: Diagnosis[]) => {
             this.dataToShow = data;
+            this.activeFilters = this.getDifferentMedicationStatus();
           });
         break;
     }
@@ -107,12 +120,13 @@ export class TableComponent implements OnInit, OnChanges {
 
   get filteredData(): any {
     const filtered = this.dataToShow
-      .filter((data:any) =>
-        data.name.toLowerCase().includes(this.filterText.toLowerCase())
+      .filter((data: any) =>
+        data.name.toLowerCase().includes(this.filterText.toLowerCase()) &&
+        this.activeFilters.includes(data.status)
       );
 
     if (this.sortColumn) {
-      return filtered.sort((a:any, b:any) => this.sortData(a, b));
+      return filtered.sort((a: any, b: any) => this.sortData(a, b));
     }
 
     return filtered;
@@ -136,6 +150,7 @@ export class TableComponent implements OnInit, OnChanges {
   onRowClick(dataSet: any, dataType: Data): void {
     const dialogRef = this.dialog.open(ValueDialogComponent, {
       data: [dataType, dataSet],
+      width: '90%'
     });
   }
 
@@ -171,6 +186,19 @@ export class TableComponent implements OnInit, OnChanges {
     } else {
       this.sortColumn = header.field;
       this.sortDirection = 'asc';
+    }
+  }
+
+  getDifferentMedicationStatus(): Status[] {
+    let returnData: Status[] = this.dataToShow.map((data: any) => data.status);
+    return Array.from(new Set(returnData));
+  }
+
+  toggleFilter(status: Status) {
+    if (this.activeFilters.includes(status)) {
+      this.activeFilters = this.activeFilters.filter(s => s !== status);
+    } else {
+      this.activeFilters.push(status);
     }
   }
 }

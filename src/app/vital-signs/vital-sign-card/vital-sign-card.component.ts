@@ -21,6 +21,7 @@ export class VitalSignCardComponent {
   onCardClick(dataSet: any, dataType: Data): void {
     const dialogRef = this.dialog.open(ValueDialogComponent, {
       data: [dataType, dataSet],
+      width: '90%'
     });
   }
 

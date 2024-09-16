@@ -95,6 +95,12 @@ mat-expansion-panel-header {
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+
+  .name-and-warning {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
 }
 
 .name {
@@ -106,6 +112,8 @@ mat-expansion-panel-header {
   line-height: normal;
   width: fit-content;
   margin: 0;
+
+
 }
 
 /* Gender and Birthday */
@@ -113,6 +121,8 @@ mat-expansion-panel-header {
   display: flex;
   align-items: center;
   gap: 15px;
+
+
 }
 
 .gender {
@@ -161,6 +171,7 @@ mat-expansion-panel-header {
   justify-content: space-between;
   align-items: flex-start;
   align-self: stretch;
+  gap: 10px;
 }
 
 /* Detail Information */
@@ -174,7 +185,7 @@ mat-expansion-panel-header {
 
 .detail-information .key {
   color: #6f6f6f;
-  text-align: center;
+  text-align: start;
   font-family: Mulish, sans-serif;
   font-size: 20px;
   font-style: normal;
@@ -184,7 +195,7 @@ mat-expansion-panel-header {
 
 .detail-information .value {
   color: #191c20;
-  text-align: center;
+  text-align: start;
   font-family: Mulish, sans-serif;
   font-size: 25px;
   font-style: normal;
@@ -196,11 +207,17 @@ mat-expansion-panel-header {
 @media (max-width: 768px) {
   .content-frame {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    padding: 0;
   }
   .avatar-and-name {
     flex-direction: column;
     gap: 10px;
+    justify-content: center;
+  }
+
+  .name-and-data {
+    align-items: center;
   }
   .details-frame {
     flex-direction: column;
@@ -208,5 +225,17 @@ mat-expansion-panel-header {
   }
   .detail-information {
     min-width: 100%;
+  }
+
+  app-global-search-field {
+    margin-top: 2rem;
+  }
+
+  .mat-expansion-panel-header {
+    padding: 0;
+
+    .mat-expansion-indicator {
+      display: none !important;
+    }
   }
 }

@@ -1,5 +1,6 @@
 <ul class="autocomplete-list">
   <li *ngFor="let option of filteredOptions" (click)="selectOption(option)">
+    <img [src]="'assets/Icons/' + option.dataType.toString() + '.svg'">
     {{ option.name }}
   </li>
 </ul>

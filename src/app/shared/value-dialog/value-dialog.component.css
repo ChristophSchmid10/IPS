@@ -1,6 +1,6 @@
+
 .dialog-container {
   display: flex;
-  width: 800px;
   padding: 16px;
   flex-direction: column;
   align-items: flex-start;
@@ -10,81 +10,92 @@
   background: #fff;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.25);
   justify-content: space-between;
+  box-sizing: border-box; /* Stellt sicher, dass Padding und Border in die Breite einbezogen werden */
+}
 
-  .dialog-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    width: 100%;
-    border-bottom: 1px solid #b3b3b3;
-    padding-bottom: 16px;
-  }
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  width: 100%;
+  border-bottom: 1px solid #b3b3b3;
+  padding-bottom: 16px;
+}
 
-  .dialog-header .icon-and-label {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
+.dialog-header .icon-and-label {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
 
-  .dialog-header .icon-and-label img {
-    width: 50px;
-    height: 50px;
-  }
+.dialog-header .icon-and-label img {
+  width: 40px;
+  height: 40px;
+}
 
-  .dialog-header .icon-and-label p {
-    color: #7f7f7f;
-    margin: 0;
-    text-align: center;
-    font-family: Mulish;
-    font-size: 30px;
-    font-weight: 600;
-  }
+.dialog-header .icon-and-label p {
+  color: #7f7f7f;
+  margin: 0;
+  text-align: center;
+  font-family: Mulish;
+  font-size: 25px;
+  font-weight: 600;
+}
 
-  .content-frame {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    align-self: stretch;
+.content-frame {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: stretch;
+  width: 100%; /* Stellt sicher, dass der Inhalt die gesamte verfügbare Breite einnimmt */
+  flex-direction: column;
+}
 
-    .content {
-      flex: 1;
-      gap: 32px;
-      flex-direction: column;
-      align-items: flex-start;
-      display: flex;
+.content-frame .content {
+  flex: 1;
+  gap: 32px;
+  flex-direction: row;
+  align-items: flex-start;
+  display: flex;
+  width: 100%; /* Stellt sicher, dass der Inhalt die gesamte verfügbare Breite einnimmt */
+}
 
-      .details {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: flex-start;
-        align-self: stretch;
-        gap: 2px;
+.content-frame .content .details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  align-self: stretch;
+  gap: 2px;
+  width: 100%; /* Stellt sicher, dass der Inhalt die gesamte verfügbare Breite einnimmt */
+}
 
-        .header {
-          color: #6f6f6f;
-          text-align: center;
-          font-family: Mulish;
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 600;
-          line-height: normal;
-          margin: 0;
-        }
+.content-frame .content .details .header {
+  color: #6f6f6f;
+  text-align: center;
+  font-family: Mulish;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  margin: 0;
+}
 
-        .value {
-          color: #282828;
-          text-align: start;
-          /* Default */
-          font-family: Mulish;
-          font-size: 20px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-          margin: 0;
-        }
-      }
-    }
+.content-frame .content .details .value {
+  color: #282828;
+  text-align: start;
+  font-family: Mulish;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .dialog-container {
+    width: 100%; /* Stellt sicher, dass der Dialog die volle Breite des Bildschirms einnimmt */
   }
 }
