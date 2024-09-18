@@ -121,9 +121,11 @@ export class TableComponent implements OnInit, OnChanges {
   get filteredData(): any {
     const filtered = this.dataToShow
       .filter((data: any) =>
-        data.name.toLowerCase().includes(this.filterText.toLowerCase()) &&
-        this.activeFilters.includes(data.status)
+        (data.name.toLowerCase().includes(this.filterText.toLowerCase()) &&
+        this.activeFilters.includes(data.status)) || (data.hasOwnProperty('measuredFrom') && data.measuredFrom.toLowerCase().includes(this.filterText.toLowerCase()) &&
+          this.activeFilters.includes(data.status))
       );
+
 
     if (this.sortColumn) {
       return filtered.sort((a: any, b: any) => this.sortData(a, b));
