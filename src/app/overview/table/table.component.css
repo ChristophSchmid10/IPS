@@ -222,7 +222,7 @@ mat-chip mat-icon {
 /* Responsive adjustments */
 @media (max-width: 960px) {
   .table-container {
-    max-height: 200px;
+    max-height: 250px;
   }
 
   thead.sticky-header th {
