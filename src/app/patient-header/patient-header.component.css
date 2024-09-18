@@ -6,7 +6,7 @@ p {
 
 /* Expansion Panel Styles */
 mat-expansion-panel {
-  padding-left: 0;
+  padding-left: 0px !important;
   border: none;
   box-shadow: none;
   border-radius: 10px;
@@ -38,7 +38,7 @@ mat-expansion-panel-header {
 /* Patient Header */
 .patient-header {
   display: flex;
-  padding: 16px;
+  padding: 16px 0;
   justify-content: space-between;
   align-items: center;
   align-self: stretch;

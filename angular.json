@@ -103,15 +103,14 @@
               "**/node_modules/**"
             ]
           }
-        },
-        "deploy": {
-          "builder": "angular-cli-ghpages:deploy"
-        }
-        }
-        }
+      },
+      "deploy": {
+        "builder": "angular-cli-ghpages:deploy"
       }
     }
-  },
-  "defaultProject": "IPS"
+  }
+}
+},
+"defaultProject": "IPS"
 }
 

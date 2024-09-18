@@ -47,16 +47,16 @@
   </div>
   <div class="details-frame">
     <div class="detail-information">
+      <p class="key font-size-middle">Geburtsdatum</p>
+      <p class="value font-size-middle">{{patient?.dateOfBirth | date: 'dd.MM.yyyy'}}</p>
+    </div>
+    <div class="detail-information">
       <p class="key font-size-middle">SVNR</p>
       <p class="value font-size-middle">{{patient?.SVNR}}</p>
     </div>
     <div class="detail-information">
       <p class="key font-size-middle">Hausarzt</p>
       <p class="value font-size-middle">{{patient?.homePhysician}}</p>
-    </div>
-    <div class="detail-information">
-      <p class="key font-size-middle"></p>
-      <p class="value font-size-middle"></p>
     </div>
   </div>
   <div class="details-frame">

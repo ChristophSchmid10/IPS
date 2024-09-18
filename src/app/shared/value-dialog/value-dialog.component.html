@@ -17,17 +17,17 @@
       </div>
       <div class="details">
         <p class="header font-size-middle">{{dataType === Data.Medication ? 'Dosierung' : dataType === Data.Diagnosis ? 'Bekannt seit' : dataType === Data.LabValue ? 'Gemessen am' : dataType === Data.Procedure ? 'Durchgeführt / Geplant am' : 'Gemessen am'}}</p>
-        <p class="value font-size-middle">{{dataType === Data.Medication ? dataSet?.dosage : dataType === Data.Diagnosis ? (dataSet?.startDate | date: 'dd.MM.yyyy') : dataType === Data.LabValue ? (dataSet?.measuredAt | date: 'dd.MM.yyyy') : dataType === Data.Procedure ? (dataSet?.doneAt | date: 'yyyy') : (dataSet?.measuredAt | date: 'dd.MM.yyyy')}}</p>
+        <p class="value font-size-middle">{{dataType === Data.Medication ? dataSet?.dosage ? dataSet?.dosage : '-' : dataType === Data.Diagnosis ? dataSet?.startDate ? (dataSet?.startDate | date: 'dd.MM.yyyy' ) : '-' : dataType === Data.LabValue ? dataSet?.measuredAt ? (dataSet?.measuredAt | date: 'dd.MM.yyyy') : '-' : dataType === Data.Procedure ? dataSet?.doneAt ? (dataSet?.doneAt | date: 'yyyy') : '-' : dataSet?.measuredAt ? (dataSet?.measuredAt | date: 'dd.MM.yyyy') : '-'}}</p>
       </div>
     </div>
     <div class="content">
       <div class="details">
         <p class="header font-size-middle">{{dataType === Data.Medication ? 'Status' : dataType === Data.Diagnosis ? 'Status' : dataType === Data.LabValue ? 'Ergebnis' : dataType === Data.Procedure ? 'Status' : 'Ergebnis'}}</p>
-        <p class="value font-size-middle">{{dataType === Data.Medication ? dataSet?.status.toString() : dataType === Data.Diagnosis ? dataSet.status.toString() : dataType === Data.LabValue ? dataSet.value : dataType === Data.Procedure ? dataSet.status.toString() : dataSet.value + dataSet.unit}}</p>
+        <p class="value font-size-middle">{{dataType === Data.Medication ? dataSet?.status ? dataSet?.status.toString() : '-' : dataType === Data.Diagnosis ? dataSet.status ? dataSet.status.toString() : '-' : dataType === Data.LabValue ? dataSet?.value != null ? dataSet.value : '-' : dataType === Data.Procedure ? dataSet?.status ? dataSet.status.toString() : '-' : dataSet.value ? dataSet.value + dataSet.unit : '-'}}</p>
       </div>
       <div class="details">
         <p class="header font-size-middle">{{dataType === Data.Medication ? 'Einnahme seit':  dataType === Data.LabValue ? 'Gemessen von' : ''}}</p>
-        <p class="value font-size-middle">{{dataType === Data.Medication ? (dataSet?.startDate | date: 'dd.MM.yyyy') : dataType === Data.LabValue ? dataSet.measuredFrom : ''}}</p>
+        <p class="value font-size-middle">{{dataType === Data.Medication ? data?.startDate ? (dataSet?.startDate | date: 'dd.MM.yyyy') : '-' : dataType === Data.LabValue ? dataSet.measuredFrom ? dataSet.measuredFrom : '-' : ''}}</p>
       </div>
     </div>
   </div>

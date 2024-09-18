@@ -6,7 +6,7 @@
       <p class="font-size-big">{{dataType.toString()}}</p>
     </div>
     <div class="search-filter">
-      <div *ngIf="dataType == Data.Diagnosis && (layout === 'lg' || layout === 'xl' || layout === 'md')" class="filter-chips-container">
+      <div *ngIf="dataType == Data.Diagnosis && (layout === 'lg' || layout === 'xl' || layout === 'md') && patientType === PatientEnum.MedicalCheckup" class="filter-chips-container">
         <mat-chip [ngClass]="status" *ngFor="let status of getDifferentMedicationStatus()" (click)="toggleFilter(status)">
           <span class="font-size-small">{{status}}</span>
           <mat-icon *ngIf="activeFilters.includes(status)">check</mat-icon>
