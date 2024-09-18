@@ -237,5 +237,15 @@ mat-expansion-panel-header {
     .mat-expansion-indicator {
       display: none !important;
     }
+
+    .ng-trigger {
+      display: none !important;
+    }
+  }
+  .mat-expansion-indicator {
+    display: none !important;
+  }
+  .ng-trigger {
+    display: none !important;
   }
 }

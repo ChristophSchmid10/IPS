@@ -55,7 +55,6 @@ export class TableComponent implements OnInit, OnChanges {
     this.router.url === '/preventive-medical-checkup' ? this.patientType = PatientEnum.MedicalCheckup : this.patientType = PatientEnum.NoProblems;
     this.breakPointService.layout$.subscribe(layout => {
       this.layout = layout;
-      console.log(this.layout);
     });
     switch (this.dataType) {
       case Data.Medication:
@@ -102,13 +101,14 @@ export class TableComponent implements OnInit, OnChanges {
         this.headerLabels = [
           { label: 'Eingriff', field: 'name' },
           { label: 'Status', field: 'status' },
-          { label: 'Durchgeführt/Geplant am', field: 'doneAt' }
+          { label: 'Durchgeführt / Geplant', field: 'doneAt' }
         ];
         this.procedureServices
           .getProcedures(this.patientType)
           .subscribe((data: Diagnosis[]) => {
             this.dataToShow = data;
             this.activeFilters = this.getDifferentMedicationStatus();
+            console.log(this.dataToShow);
           });
         break;
     }

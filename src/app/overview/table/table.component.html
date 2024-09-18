@@ -46,7 +46,7 @@
           <td *ngIf="dataType == Data.Medication">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
           <td *ngIf="dataType == Data.Medication">{{dataSet?.endDate | date: 'dd.MM.yyyy'}}</td>
           <td *ngIf="dataType == Data.Diagnosis">{{dataSet?.startDate | date: 'dd.MM.yyyy'}}</td>
-          <td *ngIf="dataType == Data.Procedure">{{dataSet?.doneAt | date: 'dd.MM.yyyy'}}</td>
+          <td *ngIf="dataType == Data.Procedure">{{dataSet?.doneAt | date: 'yyyy'}}</td>
           <td *ngIf="dataType == Data.LabValue && isStatus(dataSet?.value)">
             <mat-chip [ngClass]="dataSet?.value"><span>{{dataSet?.value}}</span></mat-chip>
           </td>
