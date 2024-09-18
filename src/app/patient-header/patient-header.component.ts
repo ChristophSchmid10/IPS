@@ -19,6 +19,7 @@ import {TableComponent} from '../overview/table/table.component';
 import {Router} from "@angular/router";
 import {PatientEnum} from "../enums/patient.enum";
 import {MatChip} from "@angular/material/chips";
+import {BreakpointService} from "../services/breakpoint.service";
 
 @Component({
   selector: 'app-patient-header',
@@ -47,11 +48,17 @@ import {MatChip} from "@angular/material/chips";
 })
 export class PatientHeaderComponent implements OnInit {
   patient: Patient | null | undefined = null;
+  layout = 'xl';
 
   constructor(private patientService: PatientService,
-              private router: Router) {}
+              private router: Router,
+              private breakPointService: BreakpointService) {}
 
   ngOnInit(): void {
+
+    this.breakPointService.layout$.subscribe(layout => {
+      this.layout = layout;
+    });
 
     if (this.router.url === '/preventive-medical-checkup') {
       this.patientService.getPatientData(PatientEnum.MedicalCheckup).subscribe(data => {

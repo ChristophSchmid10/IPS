@@ -1,5 +1,5 @@
 
-<mat-expansion-panel>
+<mat-expansion-panel [hideToggle]="layout === 'xs' || layout === 'sm'">
   <mat-expansion-panel-header>
     <div class="header-frame">
       <div class="patient-header">
@@ -20,7 +20,7 @@
                   <p class="font-size-middle">{{calculateAge(patient?.dateOfBirth)}} Jahre</p>
                 </div>
               </div>
-              <app-allergy-warning [patientType]="patient?.patientType" (click)="stopPropagation($event)"></app-allergy-warning>
+              <app-allergy-warning [patientType]="patient?.patientType"></app-allergy-warning>
 
             </div>
 
