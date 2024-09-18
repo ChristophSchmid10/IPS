@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AllergyWarningComponent} from './allergy-warning/allergy-warning.component';
 import {GlobalSearchFieldComponent} from './global-search-field/global-search-field.component';
 import {MatIconButton} from '@angular/material/button';
@@ -24,6 +24,7 @@ import {BreakpointService} from "../services/breakpoint.service";
 @Component({
   selector: 'app-patient-header',
   standalone: true,
+  encapsulation: ViewEncapsulation.None,
   imports: [
     AllergyWarningComponent,
     GlobalSearchFieldComponent,
@@ -45,6 +46,7 @@ import {BreakpointService} from "../services/breakpoint.service";
   ],
   templateUrl: './patient-header.component.html',
   styleUrl: './patient-header.component.css',
+
 })
 export class PatientHeaderComponent implements OnInit {
   patient: Patient | null | undefined = null;

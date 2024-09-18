@@ -7,7 +7,7 @@ p {
 .vertical-frame {
   display: flex;
   flex: 1;
-  min-width: 300px;
+  min-width: 250px;
   max-width: 400px;
   padding: 16px 32px;
   flex-direction: column;
@@ -70,7 +70,7 @@ p {
   color: #191c20;
   text-align: center;
   font-family: Mulish;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -105,7 +105,7 @@ p {
   color: #000;
   text-align: center;
   font-family: Mulish;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -113,7 +113,7 @@ p {
   color: #6f6f6f;
   text-align: center;
   font-family: Mulish;
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 600;
 }
 
@@ -132,7 +132,7 @@ p {
 .delta {
   color: #ffa900;
   font-family: Mulish;
-  font-size: 23px;
+  font-size: 20px;
   font-weight: 600;
 }
 

@@ -234,18 +234,13 @@ mat-expansion-panel-header {
   .mat-expansion-panel-header {
     padding: 0;
 
-    .mat-expansion-indicator {
-      display: none !important;
+    span {
+      margin-right: 0 !important;
     }
-
-    .ng-trigger {
-      display: none !important;
+    .mat-content-hide-toggle {
+      margin: 0 !important;
     }
-  }
-  .mat-expansion-indicator {
-    display: none !important;
-  }
-  .ng-trigger {
-    display: none !important;
   }
 }
+
+

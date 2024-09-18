@@ -50,6 +50,6 @@
 
 @media (max-width: 991px) {
   .search-container {
-    width: 280px;
+    width: 100%;
   }
 }

@@ -5,8 +5,8 @@
       <img [src]="'assets/Icons/Vital-Signs/' + vitalSign?.name + '.svg'">
     </div>
     <div class="vital-sign-and-date">
-      <p class="vital-sign font-size-middle">{{ vitalSign?.name }}</p>
-      <p class="date font-size-middle">{{ vitalSign?.measuredAt | date: 'dd.MM.yyyy' }}</p>
+      <p class="vital-sign">{{ vitalSign?.name }}</p>
+      <p class="date">{{ vitalSign?.measuredAt | date: 'dd.MM.yyyy' }}</p>
     </div>
   </div>
   <div class="value-delta">
