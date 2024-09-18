@@ -55,7 +55,7 @@
           <td *ngIf="dataType == Data.LabValue">{{dataSet?.measuredFrom}}</td>
         </tr>
         <tr *ngIf="patientType === PatientEnum.NoProblems" class="no-data">
-          <td class="font-size-big" colspan="12"><p>Keine {{dataType.toString()}} gefunden</p></td>
+          <td class="font-size-big" colspan="12"><p class="no-data">Keine {{dataType.toString()}} gefunden</p></td>
         </tr>
         </tbody>
       </table>

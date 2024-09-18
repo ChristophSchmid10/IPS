@@ -157,6 +157,7 @@ tbody tr:last-child td {
   line-height: normal;
   text-align: center;
   width: 100%;
+  margin-top: 1rem;
 }
 
 mat-chip {
