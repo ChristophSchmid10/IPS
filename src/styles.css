@@ -78,3 +78,26 @@ body {
     display: none !important;
   }
 }
+
+app-help {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1001; /* Stellt sicher, dass der Tooltip über anderen Elementen angezeigt wird */
+  width: 32px;
+  height: 32px;
+  transform: translate(-50%, -50%);
+}
+
+app-help.vital-signs {
+  top: 25px;
+  left: 200px;
+}
+
+app-help.overview {
+  top: 25px;
+  left: 60px;
+}

@@ -1,0 +1,5 @@
+
+<div class="tooltip-container" [ngClass]="toolTipClass" #tooltipTrigger
+     (mouseover)="show()" (mouseout)="hide()">
+  <img [src]="!showTooltip ? 'assets/Icons/spot.svg' : 'assets/Icons/spot_hover.svg'">
+</div>

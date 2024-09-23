@@ -17,12 +17,14 @@ import {MatChip} from '@angular/material/chips';
 import {Status} from '../../enums/status.enum';
 import {BreakpointService} from "../../services/breakpoint.service";
 import {MatIcon} from "@angular/material/icon";
+import {HelpComponent} from "../../shared/help/help.component";
+import {HelpService} from "../../services/help.service";
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   standalone: true,
-  imports: [DatePipe, NgForOf, NgIf, MatIconButton, MatChip, NgClass, AsyncPipe, MatIcon],
+  imports: [DatePipe, NgForOf, NgIf, MatIconButton, MatChip, NgClass, AsyncPipe, MatIcon, HelpComponent],
   styleUrls: ['./table.component.css'],
 })
 export class TableComponent implements OnInit, OnChanges {
@@ -36,6 +38,7 @@ export class TableComponent implements OnInit, OnChanges {
   dataLoaded = false;
   layout: string = 'xl';
   activeFilters: Status[] = [];
+  public showPoint = false;
 
   // Sortierlogik
   sortColumn: string = '';
@@ -48,7 +51,8 @@ export class TableComponent implements OnInit, OnChanges {
     private procedureServices: ProcedureService,
     private dialog: MatDialog,
     private router: Router,
-    private breakPointService: BreakpointService
+    private breakPointService: BreakpointService,
+    private helpService: HelpService
   ) {}
 
   ngOnInit() {
@@ -56,6 +60,10 @@ export class TableComponent implements OnInit, OnChanges {
     this.breakPointService.layout$.subscribe(layout => {
       this.layout = layout;
     });
+    this.helpService.overlayState$.subscribe(state => {
+      this.showPoint = state;
+    });
+
     switch (this.dataType) {
       case Data.Medication:
         this.headerLabels = [
@@ -202,5 +210,21 @@ export class TableComponent implements OnInit, OnChanges {
     } else {
       this.activeFilters.push(status);
     }
+  }
+
+  getToolTipText(dataType: Data) {
+    switch (dataType) {
+      case Data.Medication:
+        return 'Diese Tabelle zeigt eine Übersicht aller aktuellen Medikamente des Patienten. Jede Zeile enthält wichtige Informationen zu einem Medikament, einschließlich des Namens, des Status der Medikation (aktiv oder inaktiv), der Dosierung, dem Einnahmebeginn und dem geplanten Einnahmeende. Verwenden Sie das Suchfeld, um die Tabelle automatisch nach einem bestimmten Medikament zu filtern. Klicken Sie auf eine Medikamentenzeile, um weitere Details und Verwaltungsmöglichkeiten anzuzeigen.';
+      case Data.Diagnosis:
+        return 'Diese Tabelle zeigt eine Übersicht aller aktuellen und früheren Diagnosen des Patienten. Jede Zeile enthält wichtige Informationen zu einer Diagnose, einschließlich des Namens der Diagnose, des Status (aktiv, familiär oder abgeschlossen) und seit wann die Diagnose bekannt ist. Verwenden Sie das Suchfeld, um die Tabelle automatisch nach einer bestimmten Diagnose zu filtern. Nutzen Sie die Filteroptionen neben dem Suchfeld, um Diagnosen nach ihrem Status (aktiv, familiär oder abgeschlossen) anzuzeigen. Klicken Sie auf eine Diagnosezeile, um weitere Details und Verwaltungsmöglichkeiten anzuzeigen.';
+      case Data.LabValue:
+        return 'Diese Tabelle zeigt eine Übersicht der Laborergebnisse des Patienten. Jede Zeile enthält wichtige Informationen zu einem Laborparameter, einschließlich des Namens des Laborwerts, des Ergebnisses, des Datums der Messung und des Labors, das die Messung durchgeführt hat. Verwenden Sie das Suchfeld, um die Tabelle automatisch nach einem bestimmten Laborwert zu filtern. Klicken Sie auf eine Laborwert-Zeile, um weitere Details und Verwaltungsmöglichkeiten anzuzeigen.';
+      case Data.Procedure:
+        return 'Diese Tabelle zeigt eine Übersicht aller durchgeführten und geplanten medizinischen Eingriffe des Patienten. Jede Zeile enthält wichtige Informationen zu einem Eingriff, einschließlich des Namens des Eingriffs, des Status (abgeschlossen oder geplant) und des Jahres, in dem der Eingriff durchgeführt oder geplant wurde. Verwenden Sie das Suchfeld, um die Tabelle automatisch nach einem bestimmten Eingriff zu filtern. Klicken Sie auf eine Eingriffszeile, um weitere Details und Verwaltungsmöglichkeiten anzuzeigen.';
+        default:
+        return '';
+    }
+
   }
 }

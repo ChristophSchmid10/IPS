@@ -20,4 +20,5 @@
       <p class="delta">{{ vitalSign?.delta }}{{ vitalSign?.unit }}</p>
     </div>
   </div>
+  <app-help [toolTipText]="getToolTipText()" toolTipHeader="Vitalparameter" *ngIf="showPoint && vitalSign?.name === 'Körpergröße'"></app-help>
 </div>

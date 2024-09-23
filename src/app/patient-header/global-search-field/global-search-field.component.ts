@@ -16,6 +16,8 @@ import {Overlay, OverlayRef} from '@angular/cdk/overlay';
 import {ComponentPortal} from '@angular/cdk/portal';
 import {GlobalSearchFieldOverlayComponent} from "../global-search-field-overlay/global-search-field-overlay.component";
 import {NgIf} from "@angular/common";
+import {HelpService} from "../../services/help.service";
+import {HelpComponent} from "../../shared/help/help.component";
 
 @Component({
   selector: 'app-global-search-field',
@@ -23,7 +25,8 @@ import {NgIf} from "@angular/common";
   styleUrls: ['./global-search-field.component.css'],
   imports: [
     ReactiveFormsModule,
-    NgIf
+    NgIf,
+    HelpComponent
   ],
   standalone: true
 })
@@ -34,6 +37,7 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   loadedData: SearchFieldData[] = [];
   patientType: PatientEnum = PatientEnum.MedicalCheckup;
   overlayRef!: OverlayRef;
+  showPoint = false;
 
   @ViewChild('searchInput') searchInput!: ElementRef<HTMLInputElement>;
 
@@ -46,7 +50,8 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
     private dialog: MatDialog,
     private router: Router,
     private overlay: Overlay,
-    private viewContainerRef: ViewContainerRef
+    private viewContainerRef: ViewContainerRef,
+    private helpService: HelpService
   ) {
   }
 
@@ -62,6 +67,11 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
       } else if (this.overlayRef) {
         this.overlayRef.detach();
       }
+    });
+
+    // Abonnieren des Overlay-Zustands
+    this.helpService.overlayState$.subscribe(state => {
+      this.showPoint = state;
     });
   }
 
@@ -186,5 +196,7 @@ export class GlobalSearchFieldComponent implements OnInit, AfterViewInit {
   }
 
 
-
+  getTooltipText() {
+    return "Geben Sie hier einen Suchbegriff ein, um nach Einträgen des Patienten zu suchen, einschließlich Untersuchungen, Medikamente, Laborparameter, Eingriffe, Vitalparameter und Diagnosen. Die Einträge werden nach dem eingegebenen Suchbegriff gefiltert. Klicken Sie auf einen der gefundenen Einträge, um ein Pop-up mit detaillierten Informationen zu diesem Eintrag zu öffnen.";
+  }
 }

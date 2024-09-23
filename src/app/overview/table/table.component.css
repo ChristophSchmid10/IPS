@@ -10,6 +10,7 @@
     mat-icon {
       height: unset;
       width: unset;
+      color: #37d;
     }
   }
 }
@@ -20,6 +21,7 @@
   background: #fff;
   overflow: hidden;
   padding: 16px;
+  position: relative;
 }
 
 .table-view-header {

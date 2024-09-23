@@ -61,6 +61,7 @@
       </table>
     </div>
   </div>
+  <app-help [toolTipHeader]="dataType.toString()" [toolTipText]="getToolTipText(dataType)" *ngIf="showPoint"></app-help>
 </div>
 
 <ng-template #collapsedView>
@@ -97,8 +98,12 @@
             <td>{{dataSet?.name}}</td>
           </tr>
           </tbody>
+
         </table>
       </div>
     </div>
+    <app-help [toolTipHeader]="dataType.toString()" [toolTipText]="getToolTipText(dataType)" *ngIf="showPoint"></app-help>
+
   </div>
+
 </ng-template>

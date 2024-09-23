@@ -1,25 +1,28 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {AllergyWarningComponent} from './allergy-warning/allergy-warning.component';
-import {GlobalSearchFieldComponent} from './global-search-field/global-search-field.component';
-import {MatIconButton} from '@angular/material/button';
-import {MatIcon} from '@angular/material/icon';
+
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AllergyWarningComponent } from './allergy-warning/allergy-warning.component';
+import { GlobalSearchFieldComponent } from './global-search-field/global-search-field.component';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import {
   MatExpansionPanel,
   MatExpansionPanelDescription,
   MatExpansionPanelHeader,
   MatExpansionPanelTitle,
 } from '@angular/material/expansion';
-import {MatFormField, MatLabel} from '@angular/material/form-field';
-import {MatInput} from '@angular/material/input';
-import {Patient} from '../models/patient.model';
-import {PatientService} from '../services/patient.service';
-import {DatePipe, NgIf} from '@angular/common';
-import {MatTab, MatTabGroup} from '@angular/material/tabs';
-import {TableComponent} from '../overview/table/table.component';
-import {Router} from "@angular/router";
-import {PatientEnum} from "../enums/patient.enum";
-import {MatChip} from "@angular/material/chips";
+import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { Patient } from '../models/patient.model';
+import { PatientService } from '../services/patient.service';
+import { DatePipe, NgIf } from '@angular/common';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { Router } from "@angular/router";
+import { PatientEnum } from "../enums/patient.enum";
+import { MatChip } from "@angular/material/chips";
+import { HelpService } from '../services/help.service';
+import {TableComponent} from "../overview/table/table.component";
 import {BreakpointService} from "../services/breakpoint.service";
+import {HelpComponent} from "../shared/help/help.component";
 
 @Component({
   selector: 'app-patient-header',
@@ -43,21 +46,24 @@ import {BreakpointService} from "../services/breakpoint.service";
     MatTab,
     TableComponent,
     MatChip,
+    HelpComponent,
   ],
   templateUrl: './patient-header.component.html',
-  styleUrl: './patient-header.component.css',
-
+  styleUrls: ['./patient-header.component.css'],
 })
 export class PatientHeaderComponent implements OnInit {
   patient: Patient | null | undefined = null;
   layout = 'xl';
+  showPoint = false;
 
-  constructor(private patientService: PatientService,
-              private router: Router,
-              private breakPointService: BreakpointService) {}
+  constructor(
+    private patientService: PatientService,
+    private router: Router,
+    private breakPointService: BreakpointService,
+    private helpService: HelpService
+  ) {}
 
   ngOnInit(): void {
-
     this.breakPointService.layout$.subscribe(layout => {
       this.layout = layout;
     });
@@ -72,6 +78,10 @@ export class PatientHeaderComponent implements OnInit {
       });
     }
 
+    // Abonnieren des Overlay-Zustands
+    this.helpService.overlayState$.subscribe(state => {
+      this.showPoint = state;
+    });
   }
 
   calculateAge(dateOfBirth?: Date): number | null {
@@ -93,5 +103,9 @@ export class PatientHeaderComponent implements OnInit {
 
   stopPropagation($event: any) {
     $event.stopPropagation();
+  }
+
+  getTooltipText() {
+  return "Dieser Bereich zeigt die wichtigsten Patientendaten auf einen Blick, einschließlich Name, Alter, Geschlecht und eventueller Allergien. Wenn eine Allergie vorliegt, wird sie hier prominent angezeigt, um sofortige Aufmerksamkeit zu gewährleisten. Klicken Sie auf den Header, um zusätzliche Informationen wie Adresse, Telefonnummer, Sozialversicherungsnummer und den Hausarzt des Patienten anzuzeigen. Diese erweiterten Details helfen bei der umfassenden Verwaltung und Betreuung des Patienten."
   }
 }

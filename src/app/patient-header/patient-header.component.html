@@ -9,7 +9,7 @@
               <p class="initials">{{patient?.initials}}</p>
             </div>
             <div class="name-and-data">
-                <p class="name font-size-big">{{patient?.firstName}} {{patient?.middleName}} {{patient?.lastName}}</p>
+              <p class="name font-size-big">{{patient?.firstName}} {{patient?.middleName}} {{patient?.lastName}}</p>
               <div class="gender-and-birthday">
                 <div class="gender">
                   <img src="assets/Icons/Gender.svg">
@@ -21,13 +21,12 @@
                 </div>
               </div>
               <app-allergy-warning [patientType]="patient?.patientType"></app-allergy-warning>
-
             </div>
-
           </div>
           <app-global-search-field (click)="stopPropagation($event)" (keydown.enter)="stopPropagation($event)"></app-global-search-field>
         </div>
       </div>
+      <app-help [toolTipText]="getTooltipText()" toolTipHeader="Patient-Header" *ngIf="showPoint"></app-help>
     </div>
   </mat-expansion-panel-header>
   <div class="line"></div>

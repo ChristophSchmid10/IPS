@@ -181,11 +181,22 @@
 <div class="wrapper">
   <div class="wrapper-content">
     <router-outlet></router-outlet>
+    <button
+      (click)="handleHelp()"
+      class="floating-button"
+      mat-fab
+      aria-label="Example icon button with a delete icon"
+    >
+      <img src="assets/Icons/help.svg" />
+    </button>
   </div>
+
   <footer>
     <p>© 2024 Christoph Schmid</p>
   </footer>
 </div>
+
+
 
 
 

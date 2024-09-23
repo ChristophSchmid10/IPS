@@ -20,6 +20,10 @@ p {
   transition: background-color 0.3s;
 }
 
+.vital-sign-card {
+  position: relative;
+}
+
 .vital-sign-card:hover {
   background-color: #f0f0f0;
 }

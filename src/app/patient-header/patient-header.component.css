@@ -1,10 +1,10 @@
 
-/* Global Styles */
+
+/* Existing Styles */
 p {
   margin: 0;
 }
 
-/* Expansion Panel Styles */
 mat-expansion-panel {
   padding-left: 0px !important;
   border: none;
@@ -12,7 +12,7 @@ mat-expansion-panel {
   border-radius: 10px;
   background: white;
   height: auto;
-  overflow: visible; /* Ensure overflow is visible */
+  overflow: visible;
 }
 
 mat-expansion-panel-header {
@@ -21,21 +21,20 @@ mat-expansion-panel-header {
   box-shadow: none;
   border-radius: 10px;
   height: auto !important;
-  overflow: visible; /* Ensure overflow is visible */
+  overflow: visible;
   position: relative;
   z-index: 1;
 }
 
-/* Header Frame */
 .header-frame {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   width: 100%;
   gap: 10px;
+  position: relative;
 }
 
-/* Patient Header */
 .patient-header {
   display: flex;
   padding: 16px 0;
@@ -45,7 +44,7 @@ mat-expansion-panel-header {
   border-radius: 10px;
   background: #fff;
   width: auto;
-  position: relative; /* Ensure relative positioning */
+  position: relative;
 }
 
 .content-frame {
@@ -62,7 +61,6 @@ mat-expansion-panel-header {
   gap: 25px;
 }
 
-/* Avatar */
 .avatar {
   background: rgba(76, 148, 160, 1);
   border-radius: 50%;
@@ -89,7 +87,6 @@ mat-expansion-panel-header {
   line-height: normal;
 }
 
-/* Name and Data */
 .name-and-data {
   display: flex;
   flex-direction: column;
@@ -113,17 +110,12 @@ mat-expansion-panel-header {
   width: fit-content;
   margin: 0;
   text-align: center;
-
-
 }
 
-/* Gender and Birthday */
 .gender-and-birthday {
   display: flex;
   align-items: center;
   gap: 15px;
-
-
 }
 
 .gender {
@@ -158,14 +150,12 @@ mat-expansion-panel-header {
   line-height: normal;
 }
 
-/* Line */
 .line {
   width: 100%;
   height: 1px;
   background: #b3b3b3;
 }
 
-/* Details Frame */
 .details-frame {
   display: flex;
   padding: 10px;
@@ -175,7 +165,6 @@ mat-expansion-panel-header {
   gap: 10px;
 }
 
-/* Detail Information */
 .detail-information {
   display: flex;
   min-width: 33%;
@@ -204,7 +193,6 @@ mat-expansion-panel-header {
   line-height: normal;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .content-frame {
     flex-direction: column;
@@ -216,7 +204,6 @@ mat-expansion-panel-header {
     gap: 10px;
     justify-content: center;
   }
-
   .name-and-data {
     align-items: center;
   }
@@ -227,14 +214,11 @@ mat-expansion-panel-header {
   .detail-information {
     min-width: 100%;
   }
-
   app-global-search-field {
     margin-top: 2rem;
   }
-
   .mat-expansion-panel-header {
     padding: 0;
-
     span {
       margin-right: 0 !important;
     }
@@ -243,5 +227,3 @@ mat-expansion-panel-header {
     }
   }
 }
-
-
