@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (sessionStorage.getItem('authenticated') !== 'true') {
-      const password = prompt('Please enter the password:');
+      const password = prompt('Bitte geben Sie das Passwort ein:');
       if (password === 'IPS_Visualization_Contest_2024') {
         sessionStorage.setItem('authenticated', 'true');
         return true;
