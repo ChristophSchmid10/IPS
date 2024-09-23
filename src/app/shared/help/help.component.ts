@@ -23,6 +23,9 @@ export class HelpComponent implements OnInit, OnDestroy {
 
   private overlayRef!: OverlayRef;
   showTooltip = false;
+  private mobileDevices = [
+    'Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone'
+  ];
 
   constructor(private overlay: Overlay) {}
 
@@ -35,8 +38,9 @@ export class HelpComponent implements OnInit, OnDestroy {
         overlayX: 'center',
         overlayY: 'top'
       }]);
+    const scrollStrategy = this.overlay.scrollStrategies.block();
 
-    this.overlayRef = this.overlay.create({ positionStrategy });
+    this.overlayRef = this.overlay.create({ positionStrategy, scrollStrategy, hasBackdrop: true });
   }
 
   ngOnDestroy() {
@@ -60,5 +64,12 @@ export class HelpComponent implements OnInit, OnDestroy {
       this.overlayRef.detach();
     }
     this.showTooltip = false;
+  }
+
+  checkMobile() {
+    if (this.mobileDevices.some(device => navigator.userAgent.includes(device))) {
+      console.log('Here');
+     this.showTooltip ? this.hide() : this.show();
+    }
   }
 }

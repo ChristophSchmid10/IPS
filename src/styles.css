@@ -101,3 +101,8 @@ app-help.overview {
   top: 25px;
   left: 60px;
 }
+
+app-custom-tooltip {
+  display: flex;
+  justify-content: center;
+}
