@@ -86,7 +86,7 @@ app-help {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1001; /* Stellt sicher, dass der Tooltip über anderen Elementen angezeigt wird */
+  z-index: 500; /* Stellt sicher, dass der Tooltip über anderen Elementen angezeigt wird */
   width: 32px;
   height: 32px;
   transform: translate(-50%, -50%);
@@ -105,4 +105,8 @@ app-help.overview {
 app-custom-tooltip {
   display: flex;
   justify-content: center;
+}
+
+.mat-mdc-mini-fab {
+  display: flex;
 }
