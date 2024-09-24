@@ -108,7 +108,6 @@
           "builder": "angular-cli-ghpages:deploy"
         }
 
-
       }
     }
   }
