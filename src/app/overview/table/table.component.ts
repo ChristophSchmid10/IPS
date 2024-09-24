@@ -116,7 +116,6 @@ export class TableComponent implements OnInit, OnChanges {
           .subscribe((data: Diagnosis[]) => {
             this.dataToShow = data;
             this.activeFilters = this.getDifferentMedicationStatus();
-            console.log(this.dataToShow);
           });
         break;
     }

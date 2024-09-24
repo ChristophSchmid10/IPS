@@ -3,7 +3,7 @@ import { Component, Input, ViewChild, ElementRef, OnInit, OnDestroy } from '@ang
 import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { CustomTooltipComponent } from '../custom-tooltip/custom-tooltip.component';
-import {NgClass} from "@angular/common";
+import { NgClass } from "@angular/common";
 
 @Component({
   selector: 'app-help',
@@ -26,6 +26,7 @@ export class HelpComponent implements OnInit, OnDestroy {
   private mobileDevices = [
     'Android', 'webOS', 'iPhone', 'iPad', 'iPod', 'BlackBerry', 'Windows Phone'
   ];
+  private hoverTimeoutId!: number;
 
   constructor(private overlay: Overlay) {}
 
@@ -40,7 +41,7 @@ export class HelpComponent implements OnInit, OnDestroy {
       }]);
     const scrollStrategy = this.overlay.scrollStrategies.block();
 
-    this.overlayRef = this.overlay.create({ positionStrategy, scrollStrategy, hasBackdrop: true });
+    this.overlayRef = this.overlay.create({ positionStrategy, scrollStrategy, hasBackdrop: false });
   }
 
   ngOnDestroy() {
@@ -68,14 +69,18 @@ export class HelpComponent implements OnInit, OnDestroy {
 
   checkMobile() {
     if (this.mobileDevices.some(device => navigator.userAgent.includes(device))) {
-      console.log('Here');
-     this.showTooltip ? this.hide() : this.show();
+      this.showTooltip ? this.hide() : this.show();
     }
   }
 
   checkIfNotMobile(action: string) {
     if (!this.mobileDevices.some(device => navigator.userAgent.includes(device))) {
-      action === 'show' ? this.show() : this.hide();
+      if (action === 'show') {
+        this.hoverTimeoutId = window.setTimeout(() => this.show(), 150);
+      } else if (action === 'hide') {
+        clearTimeout(this.hoverTimeoutId);
+        this.hide();
+      }
     }
   }
 }

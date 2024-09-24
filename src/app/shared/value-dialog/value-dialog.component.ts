@@ -26,7 +26,6 @@ export class ValueDialogComponent implements OnInit {
   ngOnInit() {
     this.dataType = this.data[0];
     this.dataSet = this.data[1];
-    console.log(this.dataSet);
   }
 
   getImage(): string {
