@@ -72,4 +72,10 @@ export class HelpComponent implements OnInit, OnDestroy {
      this.showTooltip ? this.hide() : this.show();
     }
   }
+
+  checkIfNotMobile(action: string) {
+    if (!this.mobileDevices.some(device => navigator.userAgent.includes(device))) {
+      action === 'show' ? this.show() : this.hide();
+    }
+  }
 }
