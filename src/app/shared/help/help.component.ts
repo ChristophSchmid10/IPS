@@ -4,6 +4,7 @@ import { Overlay, OverlayRef } from '@angular/cdk/overlay';
 import { ComponentPortal } from '@angular/cdk/portal';
 import { CustomTooltipComponent } from '../custom-tooltip/custom-tooltip.component';
 import { NgClass } from "@angular/common";
+import {SearchFieldData} from "../../models/search-field-data.model";
 
 @Component({
   selector: 'app-help',
@@ -56,6 +57,9 @@ export class HelpComponent implements OnInit, OnDestroy {
       const tooltipComponentRef = this.overlayRef.attach(tooltipPortal);
       tooltipComponentRef.instance.header = this.toolTipHeader;
       tooltipComponentRef.instance.text = this.toolTipText;
+      tooltipComponentRef.instance.closeTooltip.subscribe(() => {
+        this.hide();
+      });
     }
     this.showTooltip = true;
   }

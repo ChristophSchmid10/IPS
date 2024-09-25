@@ -107,6 +107,8 @@ app-custom-tooltip {
   justify-content: center;
 }
 
-.mat-mdc-mini-fab {
-  display: flex;
+.mat-mdc-fab {
+  .mdc-button__label {
+    display: flex;
+  }
 }
