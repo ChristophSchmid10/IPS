@@ -94,7 +94,7 @@ thead.sticky-header {
 thead.sticky-header th {
   padding-left: 12px;
   text-align: start;
-  height: 40px;
+  height: 30px;
   cursor: pointer;
   vertical-align: middle;
 }

@@ -181,7 +181,7 @@
 <div class="wrapper">
   <div class="wrapper-content">
     <router-outlet></router-outlet>
-    <button
+    <button [ngClass]="showOverlay ? 'buttonClicked':''"
       (click)="handleHelp()"
       class="floating-button"
       mat-fab

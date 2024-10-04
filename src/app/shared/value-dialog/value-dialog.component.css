@@ -64,7 +64,6 @@
 .content-frame .content .details {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: flex-start;
   align-self: stretch;
   gap: 2px;

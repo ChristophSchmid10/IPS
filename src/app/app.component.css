@@ -48,6 +48,10 @@ app-help {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  background: #e3000f;
+  background: #FC858D;
   z-index: 1000; /* Sicherstellen, dass der Button über anderen Elementen liegt */
+}
+
+.buttonClicked {
+  background: #E3000F;
 }
