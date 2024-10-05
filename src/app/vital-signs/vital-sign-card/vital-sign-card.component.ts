@@ -38,6 +38,6 @@ export class VitalSignCardComponent implements OnInit{
   }
 
   getToolTipText() {
-    return 'Diese Karte zeigt einen spezifischen Vitalparameter des Patienten an. Jeder Vitalparameter enthält wichtige Informationen wie den Messwert, die Einheit, das Datum der Messung. Bei mehreren Messungen eines Vitalparameters kann auch die Änderung des Wertes angezeigt werden. Klicken Sie auf eine Karte, um weitere Details und anzuzeigen.';
+    return 'Diese Karte zeigt einen spezifischen Vitalparameter des Patienten an. Jeder Vitalparameter enthält wichtige Informationen wie den Messwert, die Einheit, das Datum der Messung. Bei mehreren Messungen eines Vitalparameters kann auch die Änderung des Wertes angezeigt werden (dient in diesem Fall nur als Beispiel). Klicken Sie auf eine Karte, um weitere Details und anzuzeigen.';
   }
 }

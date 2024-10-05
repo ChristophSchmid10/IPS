@@ -35,7 +35,7 @@ import {MatFabButton} from "@angular/material/button";
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  title = 'IPS';
+  title = 'QuickHealth';
   protected readonly Data = Data;
   showHeaderAndNav = true;
 
