@@ -1,5 +1,5 @@
 
-<mat-expansion-panel [hideToggle]="layout === 'xs' || layout === 'sm'">
+<mat-expansion-panel togglePosition="before" [hideToggle]="layout === 'xs' || layout === 'sm'">
   <mat-expansion-panel-header>
     <div class="header-frame">
       <div class="patient-header">
@@ -7,7 +7,9 @@
           <div class="avatar-and-name">
             <div class="avatar">
               <p class="initials">{{patient?.initials}}</p>
+              <app-help [toolTipText]="getTooltipText('avatar')" toolTipHeader="Patient-Avatar" *ngIf="showPoint"></app-help>
             </div>
+
             <div class="name-and-data">
               <p class="name font-size-big">{{patient?.firstName}} {{patient?.middleName}} {{patient?.lastName}}</p>
               <div class="gender-and-birthday">
@@ -23,10 +25,13 @@
               <app-allergy-warning [patientType]="patient?.patientType"></app-allergy-warning>
             </div>
           </div>
-          <app-global-search-field (click)="stopPropagation($event)" (keydown.enter)="stopPropagation($event)"></app-global-search-field>
+          <div class="logo-container">
+            <img *ngIf="layout === 'xl' || layout === 'lg' || layout === 'md'" class="logo" src="assets/Logo.png">
+            <app-global-search-field (click)="stopPropagation($event)" (keydown.enter)="stopPropagation($event)"></app-global-search-field>
+          </div>
         </div>
       </div>
-      <app-help [toolTipText]="getTooltipText()" toolTipHeader="Patient-Header" *ngIf="showPoint"></app-help>
+      <app-help [toolTipText]="getTooltipText('header')" toolTipHeader="Patient-Header" *ngIf="showPoint"></app-help>
     </div>
   </mat-expansion-panel-header>
   <div class="line"></div>

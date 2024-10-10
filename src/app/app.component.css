@@ -13,7 +13,7 @@ html, body {
 .wrapper-content {
   flex: 1;
   padding: 1rem 1rem 0 1rem;
-  background: #E0EDFF;
+  background: #f6f6f6;
 }
 
 
@@ -22,6 +22,10 @@ footer {
   text-align: center;
   background-color: #f1f1f1;
   border-top: 1px solid #ccc;
+
+  img {
+    height: 60px;
+  }
 }
 .overlay {
   position: fixed;

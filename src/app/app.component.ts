@@ -11,6 +11,7 @@ import {PreventiveMedicalCheckupComponent} from "./preventive-medical-checkup/pr
 import {NgClass, NgIf} from "@angular/common";
 import {HelpService} from "./services/help.service";
 import {MatFabButton} from "@angular/material/button";
+import {BreakpointService} from "./services/breakpoint.service";
 
 @Component({
   selector: 'app-root',
@@ -34,13 +35,15 @@ import {MatFabButton} from "@angular/material/button";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'QuickHealth';
   protected readonly Data = Data;
   showHeaderAndNav = true;
+  layout = 'xl';
 
 constructor(public router: Router,
-            private helpService: HelpService) {}
+            private helpService: HelpService,
+            private breakPointService: BreakpointService) {}
   showOverlay = false;
 
   @HostListener('window:keydown', ['$event'])
@@ -54,5 +57,11 @@ constructor(public router: Router,
   handleHelp() {
     this.showOverlay = !this.showOverlay;
     this.helpService.toggleOverlay(this.showOverlay);
+  }
+
+  ngOnInit() {
+    this.breakPointService.layout$.subscribe(layout => {
+      this.layout = layout;
+    });
   }
 }

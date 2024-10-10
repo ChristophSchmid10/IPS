@@ -10,7 +10,7 @@
     mat-icon {
       height: unset;
       width: unset;
-      color: #37d;
+      color: white;
     }
   }
 }
@@ -84,7 +84,7 @@ table {
 }
 
 thead.sticky-header {
-  background-color: #37d;
+  background-color: #0088CC;
   z-index: 2;
   color: white;
   position: sticky;
@@ -182,19 +182,19 @@ mat-chip:hover {
 }
 
 mat-chip.Aktiv {
-  background: #E7FFF1;
+  background: #8798e0;
 }
 
 mat-chip.Aktiv span {
-  color: #508969;
+  color: white;
 }
 
 mat-chip.Abgeschlossen {
-  background: #C9C9C9;
+  background: #0ac6b9;
 }
 
 mat-chip.Abgeschlossen span {
-  color: #4D4D4D;
+  color: white;
 }
 
 mat-chip.Nicht {
@@ -206,11 +206,11 @@ mat-chip.Nicht span {
 }
 
 mat-chip.Familiär {
-  background: #FFCE84;
+  background: #82c9ea;
 }
 
 mat-chip.Familiär span {
-  color: #B45600;
+  color: white;
 }
 
 /* Häkchen-Symbol in den Chips */

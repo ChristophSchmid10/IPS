@@ -105,7 +105,8 @@ export class PatientHeaderComponent implements OnInit {
     $event.stopPropagation();
   }
 
-  getTooltipText() {
-  return "Dieser Bereich zeigt die wichtigsten Patientendaten auf einen Blick, einschließlich Name, Alter, Geschlecht und eventueller Allergien. Wenn eine Allergie vorliegt, wird sie hier prominent angezeigt, um sofortige Aufmerksamkeit zu gewährleisten. Klicken Sie auf den Header, um zusätzliche Informationen wie Adresse, Telefonnummer, Sozialversicherungsnummer und den Hausarzt des Patienten anzuzeigen. Diese erweiterten Details helfen bei der umfassenden Verwaltung und Betreuung des Patienten."
+  getTooltipText(content: string) {
+  return content === 'avatar' ? "Hier könnte ein Bild des Patienten erscheinen, sofern eines im IPS enthalten ist."
+    : "Dieser Bereich zeigt die wichtigsten Patientendaten auf einen Blick, einschließlich Name, Alter, Geschlecht und eventueller Allergien. Wenn eine Allergie vorliegt, wird sie hier prominent angezeigt, um sofortige Aufmerksamkeit zu gewährleisten. Klicken Sie auf den Header, um zusätzliche Informationen wie Adresse, Telefonnummer, Sozialversicherungsnummer und den Hausarzt des Patienten anzuzeigen. Diese erweiterten Details helfen bei der umfassenden Verwaltung und Betreuung des Patienten.";
   }
 }

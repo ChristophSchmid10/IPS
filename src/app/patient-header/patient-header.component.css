@@ -61,14 +61,34 @@ mat-expansion-panel-header {
   gap: 25px;
 }
 
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+
+  .logo {
+    height: 70px;
+  }
+}
+
+.logo-absolute {
+  height: 70px;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
 .avatar {
-  background: rgba(76, 148, 160, 1);
+  background: #08c;
   border-radius: 50%;
   justify-content: center;
   width: 120px;
   height: 120px;
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .initials {
