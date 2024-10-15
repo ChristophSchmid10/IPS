@@ -27,7 +27,7 @@
             {{header.label}}
             <span class="sort-icon">
               <span *ngIf="sortColumn === header.field">
-                {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                {{ sortDirection === 'asc' ? '↑' : '↓' }}
               </span>
               <span *ngIf="sortColumn !== header.field">
                 &nbsp; <!-- Reserviert Platz für das Sortiersymbol -->
@@ -83,7 +83,7 @@
             <th (click)="onHeaderClick(headerLabels[0])">{{headerLabels[0].label}}
               <span class="sort-icon">
               <span *ngIf="sortColumn === headerLabels[0].field">
-                {{ sortDirection === 'asc' ? '▲' : '▼' }}
+                {{ sortDirection === 'asc' ? '↑' : '↓' }}
               </span>
               <span *ngIf="sortColumn !== headerLabels[0].field">
                 &nbsp; <!-- Reserviert Platz für das Sortiersymbol -->
